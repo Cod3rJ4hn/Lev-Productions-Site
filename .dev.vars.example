@@ -1,14 +1,12 @@
 # Copy to .dev.vars and fill in for local dev. .dev.vars is gitignored.
 # In production these are set with: npx wrangler pages secret put NAME
-# Keep only the lines this site actually uses, and list each in BACKEND.md.
 
-# Spam protection (Cloudflare Turnstile)
+# Spam protection (Cloudflare Turnstile). For local testing Cloudflare publishes
+# a dummy secret that always passes: 1x0000000000000000000000000000000AA
 TURNSTILE_SECRET_KEY=
 
-# Email provider (whichever this site uses, e.g. Resend)
+# Email (Resend)
 EMAIL_API_KEY=
 NOTIFY_EMAIL=
-
-# Payments (Stripe) — test keys first, swap to live at launch
-STRIPE_SECRET_KEY=
-STRIPE_WEBHOOK_SECRET=
+# Optional: a verified sender, e.g. "LevProductions <hello@levproductions.com.au>"
+EMAIL_FROM=

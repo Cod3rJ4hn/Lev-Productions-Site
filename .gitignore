@@ -5,3 +5,5 @@ temporary screenshots/
 .dev.vars
 .wrangler/
 .DS_Store
+_raw/
+.impeccable/questions/
