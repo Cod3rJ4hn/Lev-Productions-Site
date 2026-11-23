@@ -1,0 +1,287 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-23T22:14:30.225Z",
+  "title": "Design System: LevProductions",
+  "extensions": {
+    "colorMeta": {
+      "session-cream": {
+        "role": "neutral",
+        "displayName": "Session Cream",
+        "canonical": "#FEF6EB",
+        "tonalRamp": [
+          "#492c04",
+          "#794906",
+          "#aa6608",
+          "#db830b",
+          "#f5a83d",
+          "#f8c277",
+          "#fbdcb1",
+          "#fef2e2"
+        ]
+      },
+      "sheet-cream": {
+        "role": "neutral",
+        "displayName": "Sheet Cream",
+        "canonical": "#F9F0E3",
+        "tonalRamp": [
+          "#3f2b0d",
+          "#694716",
+          "#93641f",
+          "#bd8028",
+          "#dba557",
+          "#e6c089",
+          "#f1dbbc",
+          "#faf2e6"
+        ]
+      },
+      "tape-sand": {
+        "role": "neutral",
+        "displayName": "Tape Sand",
+        "canonical": "#DBCEBC",
+        "tonalRamp": [
+          "#32281b",
+          "#53432d",
+          "#745e3e",
+          "#957850",
+          "#b89e7a",
+          "#cdbba2",
+          "#e2d8ca",
+          "#f4f0eb"
+        ]
+      },
+      "grease-pencil-orange": {
+        "role": "primary",
+        "displayName": "Grease-Pencil Orange",
+        "canonical": "#F53C17",
+        "tonalRamp": [
+          "#490f03",
+          "#7a1905",
+          "#ab2307",
+          "#dc2d09",
+          "#f75b3b",
+          "#f98c76",
+          "#fcbdb1",
+          "#fee6e2"
+        ]
+      },
+      "control-room-black": {
+        "role": "neutral",
+        "displayName": "Control-Room Black",
+        "canonical": "#171717",
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#595959",
+          "#737373",
+          "#999999",
+          "#b8b8b8",
+          "#d6d6d6",
+          "#f0f0f0"
+        ]
+      },
+      "console-grey": {
+        "role": "neutral",
+        "displayName": "Console Grey",
+        "canonical": "#212121",
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#595959",
+          "#737373",
+          "#999999",
+          "#b8b8b8",
+          "#d6d6d6",
+          "#f0f0f0"
+        ]
+      },
+      "rack-black": {
+        "role": "neutral",
+        "displayName": "Rack Black",
+        "canonical": "#1B1B1B",
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#595959",
+          "#737373",
+          "#999999",
+          "#b8b8b8",
+          "#d6d6d6",
+          "#f0f0f0"
+        ]
+      },
+      "studio-brown": {
+        "role": "neutral",
+        "displayName": "Studio Brown",
+        "canonical": "#655B4F",
+        "tonalRamp": [
+          "#2b2722",
+          "#484038",
+          "#645a4e",
+          "#817465",
+          "#a59a8d",
+          "#c0b8af",
+          "#dbd7d1",
+          "#f2f0ee"
+        ]
+      },
+      "dust-grey": {
+        "role": "neutral",
+        "displayName": "Dust Grey",
+        "canonical": "#A29D96",
+        "tonalRamp": [
+          "#292724",
+          "#44403c",
+          "#5f5a54",
+          "#7a746c",
+          "#9f9a93",
+          "#bcb8b3",
+          "#d9d7d4",
+          "#f1f0ef"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Section headings in Bebas Neue caps."
+      },
+      "hero": {
+        "displayName": "Hero",
+        "purpose": "Three stacked lines of the first viewport."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Inter copy at 1.7 line height."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Section strips, eyebrows, tags and form labels."
+      }
+    },
+    "shadows": [
+      {
+        "name": "key-press",
+        "value": "4px 4px 0 #171717",
+        "purpose": "Buttons at rest; 7px on hover, 1px pressed."
+      },
+      {
+        "name": "paper-lift",
+        "value": "0 2px 0 rgba(23,23,23,.05), 0 18px 34px -14px rgba(101,91,79,.45), 0 6px 12px -6px rgba(245,60,23,.14)",
+        "purpose": "Pricing cards and taped photos."
+      },
+      {
+        "name": "slip-drop",
+        "value": "8px 8px 0 #F53C17",
+        "purpose": "The contact slip."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(.16,1,.3,1)",
+        "purpose": "Reveals and slides."
+      },
+      {
+        "name": "ease-spring",
+        "value": "cubic-bezier(.2,.9,.25,1.15)",
+        "purpose": "Button press, tape-box lift, scribbles."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "tablet",
+        "value": "760px"
+      },
+      {
+        "name": "desktop",
+        "value": "1000px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Orange call to action with a hard offset shadow.",
+      "html": "<button class=\"ds-btn\">Book a free discovery call</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:11px 24px;border:2px solid #171717;background:#F53C17;color:#171717;font-family:\"Bebas Neue\",Impact,sans-serif;font-size:1.45rem;letter-spacing:.02em;text-transform:uppercase;box-shadow:4px 4px 0 #171717;cursor:pointer;transition:transform .25s,box-shadow .25s}.ds-btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 #171717}.ds-btn:focus-visible{outline:3px solid #F53C17;outline-offset:3px}.ds-btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #171717}"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Outlined secondary action.",
+      "html": "<button class=\"ds-ghost\">About Ari</button>",
+      "css": ".ds-ghost{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:11px 24px;border:2px solid #171717;background:transparent;color:#171717;font-family:\"Bebas Neue\",Impact,sans-serif;font-size:1.45rem;letter-spacing:.02em;text-transform:uppercase;box-shadow:4px 4px 0 #171717;cursor:pointer;transition:transform .25s,box-shadow .25s}.ds-ghost:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 #171717}.ds-ghost:focus-visible{outline:3px solid #F53C17;outline-offset:3px}.ds-ghost:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #171717}"
+    },
+    {
+      "name": "Form Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Ledger-style input with a visible uppercase label.",
+      "html": "<div class=\"ds-f\"><label for=\"x\">First Name</label><input id=\"x\"></div>",
+      "css": ".ds-f{display:grid;gap:4px}.ds-f label{font:700 13px Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase}.ds-f input{min-height:48px;padding:10px 12px;background:#F9F0E3;border:2px solid #171717;border-radius:0;font:17px Inter,sans-serif}.ds-f input:focus-visible{outline:3px solid #F53C17;outline-offset:0;background:#fff}"
+    },
+    {
+      "name": "Tape Box",
+      "kind": "card",
+      "refersTo": "tape-card",
+      "description": "Artist card: sand sleeve with a colour-blended photo.",
+      "html": "<div class=\"ds-tape\"><div class=\"ds-ph\"></div><p>Fin wheatley <span>[03]</span></p></div>",
+      "css": ".ds-tape{width:240px;background:#DBCEBC;border:2px solid #FEF6EB;padding:10px 10px 14px;color:#171717}.ds-ph{height:240px;background:#171717;position:relative}.ds-ph::after{content:\"\";position:absolute;inset:0;background:#F53C17;mix-blend-mode:color;opacity:.85}.ds-tape p{margin:8px 0 0;font:1.9rem \"Bebas Neue\",Impact,sans-serif;text-transform:uppercase;display:flex;justify-content:space-between}.ds-tape span{font:700 12px Inter,sans-serif}"
+    },
+    {
+      "name": "Section Strip",
+      "kind": "custom",
+      "description": "Numbered header that opens every section.",
+      "html": "<div class=\"ds-strip\"><b>04</b><span>Pricing</span><i></i></div>",
+      "css": ".ds-strip{display:flex;gap:16px;align-items:center;border-top:2px solid #171717;padding-top:10px;font:700 13px Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase}.ds-strip b{font:24px \"Bebas Neue\",Impact,sans-serif;letter-spacing:0}.ds-strip i{flex:1;border-top:1px dashed #171717;opacity:.4}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Session Sheet",
+    "overview": "The site is one recording session laid out on a studio track sheet. Every section is a numbered track and scrolling works like the tape transport. Two rooms alternate: cream sheet stock for paperwork, near-black control room for the work.",
+    "keyCharacteristics": [
+      "Bebas Neue lettering at poster scale against calm Inter body copy",
+      "Hard offset shadows on interactive things, soft tinted shadows on paper things",
+      "Numbering everywhere",
+      "Transform and opacity only, with a static fallback"
+    ],
+    "rules": [
+      {
+        "name": "The Marks-Not-Fields Rule",
+        "body": "Orange is a mark on paper and a signal in the dark. It fills a whole region only once (the discovery band).",
+        "section": "colors"
+      },
+      {
+        "name": "The Ink-On-Orange Rule",
+        "body": "Anything set on orange is near-black, never cream or white.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tight-Caps Rule",
+        "body": "Display type is always uppercase with -0.03em tracking and line-height 0.9.",
+        "section": "typography"
+      },
+      {
+        "name": "The Press Rule",
+        "body": "Buttons move toward their shadow when pressed; nothing glows.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do set text on orange in #171717.",
+      "Do keep orange text only on dark grounds or at display size.",
+      "Do number things (sections, lanes, takes, tape boxes).",
+      "Do animate only transform and opacity, and give every moving thing a still fallback.",
+      "Do give every control a hover, focus-visible and active state and a 44px target."
+    ],
+    "donts": [
+      "Don't use rounded corners, glassmorphism or glow.",
+      "Don't introduce a third typeface or a colour outside the nine tokens.",
+      "Don't autoplay audio; Spotify loads only on a click.",
+      "Don't hijack scroll: pins are bounded and native scrolling stays in charge."
+    ]
+  }
+}
