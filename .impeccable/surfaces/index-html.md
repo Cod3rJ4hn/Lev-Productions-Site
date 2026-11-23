@@ -17,7 +17,7 @@ OWN-WORLD: The ground is cream track-sheet stock (#FEF6EB / #F9F0E3), ruled in h
 
 STORY: The visitor sees their idea become a session: idea (voice memo), then tracks laid down (services), then the session booked (pricing), then who came through the door (artists), then questions (takes), then booking the call. They come to believe Ari will finish their song, and they send the form.
 
-FIRST VIEWPORT: The studio photo is full-bleed under a cream track-sheet header strip with LEVPRODUCTIONS, the nav, a live REC light and a timecode. "WRITE, RECORD. RELEASE." spans the width in Bebas, about 14vw on desktop and 18vw on mobile, with "A place where artists grow." beneath. Two tape reels sit bottom-right and turn with scroll. A grease-pencil-circled orange "Book a free discovery call" button sits bottom-left and is visible at 375px.
+FIRST VIEWPORT: The studio photo is full-bleed under a cream track-sheet header strip with LEVPRODUCTIONS, the nav, a live REC light and a timecode. "WRITE, RECORD. RELEASE." spans the width in Bebas, about 14vw on desktop and 18vw on mobile, with "A place where artists grow." beneath. Two tape reels sit top-right (moved from bottom-right so they never collide with the primary action) and turn with scroll. A grease-pencil-circled orange "Book a free discovery call" button sits bottom-right on desktop and below the copy on mobile, visible at 375px.
 
 FORM: Studio track sheet / tape box. Grounded list position 5 of 7. seed:375707cd7ec638c1
 

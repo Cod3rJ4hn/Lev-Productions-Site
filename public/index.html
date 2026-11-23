@@ -45,6 +45,9 @@ setTimeout(function () { if (!window.__lev) document.documentElement.classList.a
 }
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--bar-h) + 8px);-webkit-text-size-adjust:100%}
+html{scrollbar-color:var(--orange) var(--ink)}
+::selection{background:var(--orange);color:var(--ink)}
+input,textarea{caret-color:var(--orange)}
 body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;max-width:100%;height:auto}
 h1,h2,h3,p,ul,ol,dl,dd,figure{margin:0}
@@ -62,8 +65,7 @@ button,input,textarea{font:inherit;color:inherit}
 .display{font-family:var(--display);font-weight:400;line-height:.9;letter-spacing:-.03em;text-transform:uppercase}
 h2.display{font-size:clamp(3.4rem,10.5vw,8.5rem)}
 h3.display{font-size:clamp(1.9rem,3.4vw,2.8rem)}
-.eyebrow{display:flex;align-items:center;gap:.5rem;font-size:.8125rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
-.eyebrow::before{content:"";width:.6rem;height:.6rem;background:var(--orange)}
+.eyebrow{display:block;font-size:.8125rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
 .lede{max-width:58ch;color:var(--brown)}
 .dark .lede{color:var(--grey)}
 
@@ -106,7 +108,8 @@ html:not(.rm) .rec-dot{animation:rec 1.4s ease-in-out 4}
 .menu[aria-expanded=true] span{background:transparent}
 .menu[aria-expanded=true] span::before{transform:translateY(6px) rotate(45deg)}
 .menu[aria-expanded=true] span::after{transform:translateY(-6px) rotate(-45deg)}
-.listen{min-height:44px;padding:.35rem .9rem;font-size:1.15rem;box-shadow:3px 3px 0 var(--ink)}
+.listen{min-height:44px;padding:.35rem .9rem;font-size:1.15rem;background:transparent;box-shadow:none}
+.listen:hover{background:var(--ink);color:var(--cream);box-shadow:none;transform:none}
 .progress{position:absolute;left:0;bottom:-2px;height:4px;width:100%;background:var(--orange);transform:scaleX(0);transform-origin:left}
 @media (min-width:480px){.tc{display:inline-flex}}
 @media (min-width:1000px){
@@ -175,7 +178,6 @@ html.js:not(.rm) .wave.in i{transform:none}
 .svc{padding-block:var(--sp-4);min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);align-content:center;overflow:hidden}
 .svc__grid{display:grid;gap:var(--sp-3)}
 .svc .strip{margin-bottom:var(--sp-3)}
-.svc__head .eyebrow{color:var(--orange);margin-bottom:var(--sp-1)}
 .svc__head .lede{margin-top:var(--sp-2)}
 .lanes{position:relative;display:grid;gap:0}
 .lane{display:grid;gap:.5rem;padding-block:.9rem;border-top:1px solid rgba(254,246,235,.18)}
@@ -245,7 +247,7 @@ html.js:not(.rm) .fader .knob{transform:translateY(calc((var(--lv)*1.5px) - 0px)
 html.js:not(.rm) .fader.in .knob{transform:none}
 .fader h4{margin:0;font-family:var(--display);font-weight:400;font-size:1.55rem;line-height:1;letter-spacing:-.01em;text-transform:uppercase}
 .fader p{font-size:.85rem;line-height:1.4;color:var(--brown)}
-.fader .amt{font-family:var(--display);font-size:2.6rem;line-height:1;letter-spacing:-.02em}
+.fader p.amt{color:var(--ink);font-family:var(--display);font-size:2.6rem;line-height:1;letter-spacing:-.02em}
 @media (min-width:760px){.plans{grid-template-columns:1fr 1fr}.faders{grid-template-columns:repeat(4,1fr)}}
 
 /* ---------- discovery band ---------- */
@@ -257,6 +259,8 @@ html:not(.rm) .marquee.paused{animation-play-state:paused}
 .band .pause{min-height:44px;padding:.4rem 1rem;font-size:1rem;background:transparent;color:var(--ink);border-color:var(--ink);box-shadow:none}
 .band .pause:hover{background:var(--ink);color:var(--orange);transform:none;box-shadow:none}
 @keyframes slide{to{transform:translateX(-50%)}}
+html.rm .marquee{width:auto;white-space:normal;padding-inline:var(--gutter);font-size:clamp(3rem,10vw,8rem)}
+html.rm .marquee span:nth-child(n+2){display:none}
 .band__row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--sp-3);margin-top:var(--sp-4)}
 .band__btns{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-2)}
 html.rm .pause{display:none}
@@ -292,7 +296,7 @@ html.rm .pause{display:none}
 .about__copy .btn{justify-self:start;margin-top:var(--sp-1)}
 .stats{display:flex;flex-wrap:wrap;gap:var(--sp-3) var(--sp-4);margin-top:var(--sp-2)}
 .stat b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(4rem,9vw,6.5rem);line-height:.85;letter-spacing:-.03em;color:var(--orange)}
-.stat span{display:block;max-width:20ch;font-size:.9rem;line-height:1.4;font-weight:700;color:var(--brown)}
+.stat>span{display:block;max-width:20ch;font-size:.9rem;line-height:1.4;font-weight:700;color:var(--brown)}
 .about__photos{position:relative;display:grid;gap:var(--sp-3);align-content:start}
 .about__photos .small{display:none}
 @media (min-width:900px){
@@ -344,7 +348,7 @@ html.rm .pause{display:none}
 .f input:hover,.f textarea:hover{background:#fff}
 .f input:focus-visible,.f textarea:focus-visible{outline:3px solid var(--orange);outline-offset:0;background:#fff}
 .f .err{display:none;font-size:.85rem;font-weight:700;color:#B3220A}
-.f.bad input,.f.bad textarea{border-color:#B3220A;box-shadow:inset 4px 0 0 #B3220A}
+.f.bad input,.f.bad textarea{border-color:#B3220A;border-width:3px}
 .f.bad .err{display:block}
 .pkg{display:none;align-items:center;justify-content:space-between;gap:var(--sp-2);padding:.6rem .8rem;background:var(--sand);border:2px dashed var(--ink);font-size:.9rem;font-weight:700}
 .pkg.on{display:flex}
@@ -432,7 +436,6 @@ html.rm .pause{display:none}
     <svg class="reel" data-reel viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="50" cy="50" r="12" fill="#F53C17"/><g fill="none" stroke="currentColor" stroke-width="3"><path d="M50 38V10M60.4 56l24.3 14M39.6 56L15.3 70"/></g><circle cx="50" cy="50" r="4" fill="#171717"/></svg>
   </div>
   <div class="wrap hero__in">
-    <p class="hero__meta"><span>Byron Bay</span><span>Northern Rivers, NSW</span><span>Ari Levy, Producer</span></p>
     <h1 class="display" id="h-hero"><span>Write,</span><span>Record.</span><span class="rel">Release.</span></h1>
     <div class="hero__row">
       <div class="hero__copy">
@@ -478,7 +481,6 @@ html.rm .pause{display:none}
     <div class="strip"><span class="n">03</span><span>Production</span><span class="sp"></span><span class="rec-dot" aria-hidden="true"></span></div>
     <div class="svc__grid">
       <div class="svc__head">
-        <p class="eyebrow">Production</p>
         <h2 class="display" id="h-svc">Production service</h2>
         <p class="lede">From raw demos to radio-ready tracks. Let’s craft a sound that’s uniquely yours.</p>
       </div>
@@ -513,7 +515,6 @@ html.rm .pause{display:none}
   <div class="wrap">
     <div class="strip" data-reveal><span class="n">04</span><span>Pricing</span><span class="sp"></span><span class="rec-dot" aria-hidden="true"></span></div>
     <div class="pricing__head" data-reveal>
-      <p class="eyebrow">Pricing</p>
       <h2 class="display" id="h-pricing">Pricing plans</h2>
       <p class="lede">Professional production, transparent pricing, no hidden fees.</p>
     </div>
