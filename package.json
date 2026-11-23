@@ -1,0 +1,12 @@
+{
+  "name": "website-dev-template",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node serve.mjs",
+    "shot": "node screenshot.mjs http://localhost:3000"
+  },
+  "devDependencies": {
+    "puppeteer": "^24.0.0"
+  }
+}

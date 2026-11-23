@@ -1,0 +1,20 @@
+# Cloudflare Pages config. Uncomment and fill bindings per site, then record
+# everything in BACKEND.md. Real IDs and keys are never committed — IDs here are
+# placeholders, and secrets go through `wrangler pages secret put` / .dev.vars.
+
+name = "site-name-here"
+pages_build_output_dir = "."
+compatibility_date = "2026-01-01"
+
+# D1 database for storing form submissions (create with:
+#   npx wrangler d1 create <site>-db
+# then paste the printed database_id below).
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "site-db"
+# database_id = "PASTE_FROM_WRANGLER"
+
+# Non-secret vars can live here. Secrets (API keys, Turnstile secret) must NOT —
+# use `wrangler pages secret put NAME` and list them in BACKEND.md instead.
+# [vars]
+# NOTIFY_EMAIL = "owner@example.com"

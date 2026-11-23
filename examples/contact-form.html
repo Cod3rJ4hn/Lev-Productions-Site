@@ -1,0 +1,57 @@
+<!-- Client-side half of the contact/quote form. Style it per site; the wiring is
+     what matters: Turnstile widget + fetch to the /contact Function, with real
+     success and error states. Replace the Turnstile sitekey (public, safe in HTML). -->
+
+<form id="contact-form" novalidate>
+  <label>Name <input name="name" required autocomplete="name"></label>
+  <label>Email <input name="email" type="email" required autocomplete="email"></label>
+  <label>Message <textarea name="message" required></textarea></label>
+
+  <!-- Cloudflare Turnstile -->
+  <div class="cf-turnstile" data-sitekey="YOUR_TURNSTILE_SITE_KEY"></div>
+
+  <button type="submit">Send</button>
+  <p id="form-status" role="status" aria-live="polite" hidden></p>
+</form>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script>
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button');
+    btn.disabled = true;
+    status.hidden = false;
+    status.textContent = 'Sending…';
+
+    const token = form.querySelector('[name="cf-turnstile-response"]')?.value;
+    const payload = {
+      name: form.name.value,
+      email: form.email.value,
+      message: form.message.value,
+      turnstileToken: token,
+    };
+
+    try {
+      const res = await fetch('/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        form.reset();
+        status.textContent = 'Thanks — we’ll be in touch shortly.';
+      } else {
+        status.textContent = data.error || 'Something went wrong. Please try again.';
+      }
+    } catch {
+      status.textContent = 'Network error. Please try again.';
+    } finally {
+      btn.disabled = false;
+      if (window.turnstile) window.turnstile.reset();
+    }
+  });
+</script>

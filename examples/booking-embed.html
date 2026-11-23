@@ -1,0 +1,26 @@
+<!-- Booking via a provider embed (example: Cal.com). Pure frontend — no Function
+     needed. Loaded on click so the embed script doesn't cost performance on first
+     paint. Swap the provider/link per client; keep the load-on-click pattern. -->
+
+<button id="open-booking" type="button">Book a time</button>
+<div id="booking-slot" hidden></div>
+
+<script>
+  document.getElementById('open-booking').addEventListener('click', () => {
+    const slot = document.getElementById('booking-slot');
+    slot.hidden = false;
+
+    // Load the provider's embed script once, on demand.
+    if (!window.__bookingLoaded) {
+      window.__bookingLoaded = true;
+      const s = document.createElement('script');
+      s.src = 'https://app.cal.com/embed/embed.js';
+      s.async = true;
+      s.onload = () => {
+        // Cal.com inline embed — replace YOUR_HANDLE/EVENT with the client's link.
+        Cal('inline', { elementOrSelector: '#booking-slot', calLink: 'YOUR_HANDLE/EVENT' });
+      };
+      document.head.appendChild(s);
+    }
+  });
+</script>
