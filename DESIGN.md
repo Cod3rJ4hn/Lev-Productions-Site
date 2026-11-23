@@ -1,200 +1,182 @@
 ---
 name: LevProductions
-description: A recording-session track sheet in cream, studio black and grease-pencil orange; scroll is the tape transport.
+description: A minimal gig poster: fat poster type, lots of air, flat colour fields, one musical motion idea per section.
 colors:
   session-cream: "#FEF6EB"
   sheet-cream: "#F9F0E3"
   tape-sand: "#DBCEBC"
-  grease-pencil-orange: "#F53C17"
+  signal-orange: "#F53C17"
   control-room-black: "#171717"
   console-grey: "#212121"
-  rack-black: "#1B1B1B"
   studio-brown: "#655B4F"
   dust-grey: "#A29D96"
+  error-salmon: "#FF9B88"
 typography:
   display:
-    fontFamily: "Bebas Neue, Impact, Arial Narrow, sans-serif"
-    fontSize: "clamp(3.4rem, 10.5vw, 8.5rem)"
+    fontFamily: "Bowlby One, Bowlby Fallback, Impact, sans-serif"
+    fontSize: "clamp(2.2rem, 6.4vw, 5.4rem)"
     fontWeight: 400
-    lineHeight: 0.9
-    letterSpacing: "-0.03em"
+    lineHeight: 0.98
+    letterSpacing: "-0.025em"
   hero:
-    fontFamily: "Bebas Neue, Impact, Arial Narrow, sans-serif"
-    fontSize: "clamp(4.2rem, min(26vw, 24svh), 19rem)"
+    fontFamily: "Bowlby One, Bowlby Fallback, Impact, sans-serif"
+    fontSize: "clamp(3rem, min(14.5vw, 17svh), 13rem)"
     fontWeight: 400
-    lineHeight: 0.9
-    letterSpacing: "-0.03em"
+    lineHeight: 0.98
+    letterSpacing: "-0.025em"
   title:
-    fontFamily: "Bebas Neue, Impact, Arial Narrow, sans-serif"
-    fontSize: "clamp(1.9rem, 3.4vw, 2.8rem)"
+    fontFamily: "Bowlby One, Bowlby Fallback, Impact, sans-serif"
+    fontSize: "clamp(1.4rem, 2.4vw, 1.9rem)"
     fontWeight: 400
-    lineHeight: 0.9
+    lineHeight: 1.1
   body:
-    fontFamily: "Inter, system-ui, sans-serif"
+    fontFamily: "Bricolage Grotesque, system-ui, sans-serif"
     fontSize: "1.0625rem"
     fontWeight: 400
     lineHeight: 1.7
   label:
-    fontFamily: "Inter, system-ui, sans-serif"
+    fontFamily: "Bricolage Grotesque, system-ui, sans-serif"
     fontSize: "0.8125rem"
     fontWeight: 700
-    letterSpacing: "0.14em"
+    letterSpacing: "0.16em"
 rounded:
-  none: "0px"
-  clip: "3px"
+  pill: "999px"
+  photo: "24px"
+  thumb: "20px"
 spacing:
   xs: "8px"
   sm: "16px"
   md: "24px"
   lg: "40px"
-  xl: "64px"
-  xxl: "112px"
+  xl: "72px"
+  xxl: "128px"
 components:
   button-primary:
-    backgroundColor: "{colors.grease-pencil-orange}"
+    backgroundColor: "{colors.signal-orange}"
     textColor: "{colors.control-room-black}"
-    rounded: "{rounded.none}"
-    padding: "11px 24px"
-    height: "48px"
-  button-ghost:
-    backgroundColor: "transparent"
-    textColor: "{colors.control-room-black}"
-    rounded: "{rounded.none}"
-    padding: "11px 24px"
-  tape-card:
-    backgroundColor: "{colors.tape-sand}"
-    textColor: "{colors.control-room-black}"
-    rounded: "{rounded.none}"
-    padding: "10px 10px 14px"
-  plan-card:
-    backgroundColor: "{colors.session-cream}"
-    textColor: "{colors.control-room-black}"
-    rounded: "{rounded.none}"
-    padding: "24px"
+    rounded: "{rounded.pill}"
+    padding: "13px 27px"
+    height: "52px"
+  button-ink:
+    backgroundColor: "{colors.control-room-black}"
+    textColor: "{colors.session-cream}"
+    rounded: "{rounded.pill}"
+    padding: "13px 27px"
+  photo:
+    rounded: "{rounded.photo}"
   field:
-    backgroundColor: "{colors.sheet-cream}"
-    textColor: "{colors.control-room-black}"
-    rounded: "{rounded.none}"
-    height: "48px"
+    backgroundColor: "transparent"
+    textColor: "{colors.session-cream}"
+    height: "52px"
 ---
 
 # Design System: LevProductions
 
 ## Overview
 
-**Creative North Star: "The Session Sheet"**
+**Creative North Star: "The Minimal Poster"**
 
-The site is one recording session laid out on a studio track sheet. Every section is a numbered track on the sheet, and scrolling works like the tape transport: reels turn, the timecode runs, a playhead sweeps the lanes. It is warm and hand-marked, not corporate: grease-pencil orange circles the prices, photos are taped to the sheet, artists are tape boxes on a shelf.
+One loud idea per section, then air. Headlines are set in a fat poster face; everything else is quiet: flat colour fields, hairline rules, rounded photographs and a lot of empty space. The musical feeling comes from motion that responds to the visitor's scroll (an equaliser that dances, a playhead that sweeps four tracks, a shelf of artists that slides sideways), not from decoration.
 
-Two rooms alternate. Cream sheet stock holds the paperwork (intro, pricing, about). The control room, near-black, holds the work itself (services timeline, artists, FAQs, contact). The hero photograph of the real studio carries the first viewport.
+Three rooms: cream paper for reading, a black room for the work (services, artists, contact), and one full orange field for the discovery call.
 
 **Key Characteristics:**
-- Bebas Neue lettering at poster scale against calm Inter body copy.
-- Hard offset shadows and 2px ink borders on interactive things; soft tinted shadows on paper things.
-- Numbering everywhere: 02 / 08 section strips, [01]-[04] lanes, Take 01-10, tape-box [01]-[08].
-- Motion is the transport. Everything animates with transform and opacity only, and a static sheet is always the fallback.
+- Poster-scale Bowlby One against calm Bricolage Grotesque body text.
+- No boxes. Structure comes from spacing, a single hairline, or a change of colour field.
+- Pills for actions, generous rounding for photographs.
+- Transform and opacity only for motion; a static page is always the fallback.
 
 ## Colors
 
-A two-room palette: warm paper, studio black, and one signal colour used for marks, never for fills of whole sections except the discovery band.
+Cream, black and one signal orange. Orange is big or absent: display words, flat buttons, the call block, the equaliser accents.
 
 ### Primary
-- **Grease-Pencil Orange** (#F53C17): Primary action, REC dot, waveform clips, price circles, section dots, the word RELEASE. Text on it is always near-black (4.7:1); orange as small text only appears on dark rooms.
+- **Signal Orange** (#F53C17): primary buttons, the word RELEASE, stat numbers, waveform clips, the full discovery block, bullet dots. Text on orange fills is always near-black.
 
 ### Neutral
-- **Session Cream** (#FEF6EB): page ground and card faces; headline text on dark.
-- **Sheet Cream** (#F9F0E3): alternate paper for pricing and about; input fields.
-- **Tape Sand** (#DBCEBC): tape-box and photo borders, secondary text on dark.
-- **Control-Room Black** (#171717): text on paper; ground of the dark rooms; borders and hard shadows.
-- **Console Grey** (#212121): lane cover and panel fills inside dark rooms.
-- **Rack Black** (#1B1B1B): footer ground.
-- **Studio Brown** (#655B4F): secondary text on paper (6.3:1 on cream).
-- **Dust Grey** (#A29D96): muted text on dark (6.6:1 on black).
+- **Session Cream** (#FEF6EB): page ground; text on black.
+- **Sheet Cream** (#F9F0E3): the About section ground.
+- **Tape Sand** (#DBCEBC): photo placeholders, soft text on black.
+- **Control-Room Black** (#171717): text on cream; the black rooms; ink buttons.
+- **Console Grey** (#212121): photo placeholders on black.
+- **Studio Brown** (#655B4F): secondary text on cream (6.3:1).
+- **Dust Grey** (#A29D96): secondary text on black (6.6:1).
+- **Error Salmon** (#FF9B88): form errors on black only.
 
 ### Named Rules
-**The Marks-Not-Fields Rule.** Orange is a mark on paper and a signal in the dark. It fills a whole region only once (the discovery band).
-**The Ink-On-Orange Rule.** Anything set on orange is near-black, never cream or white.
+**The Big-Or-Absent Rule.** Orange is either a large field or large type, or it is not on the screen. Small orange text appears only on black.
+**The Ink-On-Orange Rule.** Anything set on an orange fill is near-black.
 
 ## Typography
 
-**Display Font:** Bebas Neue (Impact, Arial Narrow fallback)
-**Body Font:** Inter (system-ui fallback)
+**Display Font:** Bowlby One (Bowlby Fallback, Impact)
+**Body Font:** Bricolage Grotesque (system-ui fallback)
 
-**Character:** Condensed poster caps against a quiet humanist sans, like a gig poster pinned above a clipboard.
+**Character:** A heavy, friendly gig-poster face over a warm, slightly quirky grotesque. Loud headlines, quiet reading.
 
 ### Hierarchy
-- **Hero** (400, clamp(4.2rem, min(26vw, 24svh), 19rem), 0.9): the three stacked lines of the first viewport.
-- **Display** (400, clamp(3.4rem, 10.5vw, 8.5rem), 0.9, -0.03em): section headings.
-- **Title** (400, clamp(1.9rem, 3.4vw, 2.8rem), 0.9): lane names, package names, tape-box names.
-- **Body** (400, 1.0625rem, 1.7): copy, max about 58-68ch.
-- **Label** (700, 0.8125rem, +0.14em, uppercase): section strips, eyebrows, tags, form labels.
+- **Hero** (400, clamp(3rem, min(14.5vw, 17svh), 13rem), 0.98): the three stacked lines; uppercase.
+- **Display** (400, clamp(2.2rem, 6.4vw, 5.4rem), 0.98, -0.025em): section headings in sentence case.
+- **Title** (400, clamp(1.4rem, 2.4vw, 1.9rem), 1.1): plan names, lane names, artist names.
+- **Body** (400, 1.0625rem, 1.7): copy at 46-66ch.
+- **Label** (700, 0.8125rem, +0.16em, uppercase): small section kickers and form labels.
 
 ### Named Rules
-**The Tight-Caps Rule.** Display type is always uppercase with -0.03em tracking and line-height 0.9; never mix-case Bebas.
+**The One-Face-Per-Job Rule.** Bowlby sets headings, prices and names only. Never body copy.
 
 ## Layout
 
-A 12-column sheet. Light sections carry faint vertical column rules (a repeating gradient at 7% ink) so the grid is visible. Content sits in a 1360px wrapper with a fluid gutter of 4vw (16-48px). Spacing steps: 8 / 16 / 24 / 40 / 64 / 112px. Every section opens with a "strip": a 2px ink rule, its number, name and a dashed leader.
+A 1280px wrapper with a fluid gutter (20-56px). Sections breathe: 72-128px vertical padding. Two-column layouts are asymmetric (5:6 or 4:7) and collapse to one column under 900-1000px. Hairlines (1px, 16% ink) divide plans and price rows; there are no card boxes.
 
-Responsive: mobile-first. Under 1000px the pinned timeline and shelf become stacked lanes and a native scroll-snap shelf; header navigation collapses to a full-width menu. The first viewport always shows the primary button, at 375px included.
+Under 1000px the pinned services timeline becomes stacked lanes and the artist shelf a native scroll-snap row. The primary action sits in the first viewport at every width.
 
 ## Elevation & Depth
 
-Hybrid. Interactive elements are flat with a hard offset shadow (4px 4px 0 ink) that grows on hover and collapses on press. Paper objects (cards, taped photos) lift with layered, warm-tinted soft shadows. Dark rooms get depth from tonal layers (black, console grey, cream cards), not glow.
-
-### Shadow Vocabulary
-- **Key press** (`box-shadow: 4px 4px 0 #171717`): buttons at rest; 7px on hover; 1px pressed.
-- **Paper lift** (`0 2px 0 rgba(23,23,23,.05), 0 18px 34px -14px rgba(101,91,79,.45), 0 6px 12px -6px rgba(245,60,23,.14)`): pricing cards, taped photos.
-- **Slip drop** (`8px 8px 0 #F53C17`): the contact slip.
-
-### Named Rules
-**The Press Rule.** Buttons move toward their shadow when pressed; nothing glows.
+Flat. Colour fields and rounded photographs create the layers. One soft lift shadow (`0 22px 40px -22px rgba(101,91,79,.45)`) sits under the portrait photo; the Spotify player floats with a large diffuse shadow. No hard offsets and no glow.
 
 ## Shapes
 
-Square. Zero radius on controls, cards and fields; 3px on waveform clips only. Borders are 2px ink (1.5px on tags). Photos carry a tape strip in orange and a slight rotation (-4 to +4 degrees). Hand-drawn orange ellipses mark the call to action and prices.
+Pills for every button and the package chip. Photographs and the artist thumbnails are rounded (24px and 20px). Form fields are open, underlined lines, not boxes. Bullets are small orange dots.
 
 ## Components
 
 ### Buttons
-- **Shape:** square, 2px ink border, 48px minimum height.
-- **Primary:** orange fill, near-black Bebas label (1.45rem), 4px hard shadow.
-- **Ghost:** transparent, currentColor border and shadow.
-- **Cream:** cream fill on dark rooms.
-- **Hover / Focus / Active:** translate (-2px,-2px) with 7px shadow; focus-visible is a 3px orange outline (ink on orange surfaces); active presses to 1px.
+- **Shape:** pill, 52px minimum height, no border, no shadow.
+- **Primary:** orange fill, near-black bold label.
+- **Ink:** near-black fill, cream label; used on orange.
+- **Hover / Focus / Active:** a fill slides up from below (transform), the label flips, the button lifts 2px; focus-visible is a 3px orange outline (ink on orange); active scales to 0.97.
 
-### Tape box (artists)
-Sand card, 2px cream border, orange colour-blend over the photo that lifts on hover or focus to reveal true colour; name in Bebas, catalogue number in a label.
+### Plan (pricing)
+An open column: small tag line, title, one paragraph, a huge price, meta line, dotted feature list under a hairline, extras, pill button. Two columns split by one vertical hairline.
 
-### Plan card
-Cream face, 2px ink border, paper-lift shadow, tags, orange sub-line, a price circled in orange, session boxes that fill in, dashed rule, square-bullet feature list.
-
-### Faders (mix and master)
-Four console strips with a black rail and an orange knob positioned by price; amount in Bebas below.
+### Price rows
+Name and descriptor left, price in Bowlby right, hairline between rows, a small uppercase group label above a 2px rule.
 
 ### Lane (services)
-Label column (number, name, VU bars) and a body (orange waveform clip, description). In the pinned build a cover slides off the clip as the playhead passes; the name turns orange when its lane is live.
+Number and name left, a thin orange waveform and description right. In the pinned build a cover slides off the waveform as the playhead passes and the name turns orange.
+
+### Equaliser
+Sixty-four thin bars in a band; their height follows scroll position.
+
+### Artist
+Bare rounded photo, name in Bowlby below; the photo scales slightly on hover or focus.
 
 ### Inputs / Fields
-Sheet-cream fill, 2px ink border, 48px minimum height, visible uppercase label above, errors in dark red (#B3220A) with an inset left bar.
+Transparent field with a 2px cream underline at 35%; hover brightens, focus turns the underline orange; errors turn the underline salmon with a message below. Labels are small uppercase grey.
 
 ### Navigation
-Sticky cream bar with a 2px ink bottom rule and a scroll-progress bar in orange. Links are 13px bold caps with tracking; mobile uses a full-width Bebas menu.
-
-### Signature: the transport
-Reels (hero), REC dot, running timecode and progress bar, services playhead. All are driven by scroll position and disabled (static) under reduced motion.
+Cream bar, wordmark left, text links with an orange underline that grows on hover, a pill "Book a session". Mobile: wordmark and a menu button opening a full-width list in Bowlby.
 
 ## Do's and Don'ts
 
 ### Do:
+- **Do** give each section one big type moment and leave the rest empty.
 - **Do** set text on orange in #171717.
-- **Do** keep orange text only on dark grounds or at display size.
-- **Do** number things (sections, lanes, takes, tape boxes).
-- **Do** animate only transform and opacity, and give every moving thing a still fallback.
-- **Do** give every control a hover, focus-visible and active state and a 44px target.
+- **Do** animate only transform and opacity, and give every moving thing a static fallback.
+- **Do** keep every control at 44px or larger with hover, focus-visible and active states.
 
 ### Don't:
-- **Don't** use rounded corners, glassmorphism or glow.
-- **Don't** introduce a third typeface or a colour outside the nine tokens.
+- **Don't** put content in boxes or cards; use space, a hairline or a colour change.
+- **Don't** add decorative motion that carries no information (no tickers, no spinning props).
 - **Don't** autoplay audio; Spotify loads only on a click.
-- **Don't** hijack scroll: pins are bounded and native scrolling stays in charge.
+- **Don't** introduce another typeface or colour outside the palette.

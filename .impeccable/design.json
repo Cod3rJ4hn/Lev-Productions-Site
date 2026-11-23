@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-23T22:14:30.225Z",
+  "generatedAt": "2026-11-23T22:34:39.411Z",
   "title": "Design System: LevProductions",
   "extensions": {
     "colorMeta": {
@@ -49,9 +49,9 @@
           "#f4f0eb"
         ]
       },
-      "grease-pencil-orange": {
+      "signal-orange": {
         "role": "primary",
-        "displayName": "Grease-Pencil Orange",
+        "displayName": "Signal Orange",
         "canonical": "#F53C17",
         "tonalRamp": [
           "#490f03",
@@ -94,21 +94,6 @@
           "#f0f0f0"
         ]
       },
-      "rack-black": {
-        "role": "neutral",
-        "displayName": "Rack Black",
-        "canonical": "#1B1B1B",
-        "tonalRamp": [
-          "#262626",
-          "#404040",
-          "#595959",
-          "#737373",
-          "#999999",
-          "#b8b8b8",
-          "#d6d6d6",
-          "#f0f0f0"
-        ]
-      },
       "studio-brown": {
         "role": "neutral",
         "displayName": "Studio Brown",
@@ -138,59 +123,69 @@
           "#d9d7d4",
           "#f1f0ef"
         ]
+      },
+      "error-salmon": {
+        "role": "tertiary",
+        "displayName": "Error Salmon",
+        "canonical": "#FF9B88",
+        "tonalRamp": [
+          "#4d0c00",
+          "#801400",
+          "#b31d00",
+          "#e62500",
+          "#ff5433",
+          "#ff8770",
+          "#ffbaad",
+          "#ffe5e0"
+        ]
       }
     },
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "Section headings in Bebas Neue caps."
+        "purpose": "Section headings in Bowlby One, sentence case."
       },
       "hero": {
         "displayName": "Hero",
-        "purpose": "Three stacked lines of the first viewport."
+        "purpose": "The three stacked uppercase lines of the first viewport."
       },
       "body": {
         "displayName": "Body",
-        "purpose": "Inter copy at 1.7 line height."
+        "purpose": "Bricolage Grotesque copy at 1.7 line height."
       },
       "label": {
         "displayName": "Label",
-        "purpose": "Section strips, eyebrows, tags and form labels."
+        "purpose": "Small uppercase kickers and form labels."
       }
     },
     "shadows": [
       {
-        "name": "key-press",
-        "value": "4px 4px 0 #171717",
-        "purpose": "Buttons at rest; 7px on hover, 1px pressed."
+        "name": "photo-lift",
+        "value": "0 1px 0 rgba(23,23,23,.04), 0 22px 40px -22px rgba(101,91,79,.45)",
+        "purpose": "Portrait photo only."
       },
       {
-        "name": "paper-lift",
-        "value": "0 2px 0 rgba(23,23,23,.05), 0 18px 34px -14px rgba(101,91,79,.45), 0 6px 12px -6px rgba(245,60,23,.14)",
-        "purpose": "Pricing cards and taped photos."
-      },
-      {
-        "name": "slip-drop",
-        "value": "8px 8px 0 #F53C17",
-        "purpose": "The contact slip."
+        "name": "player",
+        "value": "0 24px 50px -12px rgba(0,0,0,.55)",
+        "purpose": "Floating Spotify player."
       }
     ],
     "motion": [
       {
         "name": "ease-out",
         "value": "cubic-bezier(.16,1,.3,1)",
-        "purpose": "Reveals and slides."
+        "purpose": "Reveals, fills and slides."
       },
       {
         "name": "ease-spring",
         "value": "cubic-bezier(.2,.9,.25,1.15)",
-        "purpose": "Button press, tape-box lift, scribbles."
+        "purpose": "Button lift."
       }
     ],
     "breakpoints": [
       {
         "name": "tablet",
-        "value": "760px"
+        "value": "860px"
       },
       {
         "name": "desktop",
@@ -203,85 +198,71 @@
       "name": "Primary Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "Orange call to action with a hard offset shadow.",
+      "description": "Orange pill, near-black label.",
       "html": "<button class=\"ds-btn\">Book a free discovery call</button>",
-      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:11px 24px;border:2px solid #171717;background:#F53C17;color:#171717;font-family:\"Bebas Neue\",Impact,sans-serif;font-size:1.45rem;letter-spacing:.02em;text-transform:uppercase;box-shadow:4px 4px 0 #171717;cursor:pointer;transition:transform .25s,box-shadow .25s}.ds-btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 #171717}.ds-btn:focus-visible{outline:3px solid #F53C17;outline-offset:3px}.ds-btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #171717}"
+      "css": ".ds-btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:13px 27px;border:0;border-radius:999px;background:#F53C17;color:#171717;font:700 16px \"Bricolage Grotesque\",system-ui,sans-serif;cursor:pointer;transition:transform .3s}.ds-btn:hover{transform:translateY(-2px)}.ds-btn:focus-visible{outline:3px solid #F53C17;outline-offset:4px}.ds-btn:active{transform:scale(.97)}"
     },
     {
-      "name": "Ghost Button",
+      "name": "Ink Button",
       "kind": "button",
-      "refersTo": "button-ghost",
-      "description": "Outlined secondary action.",
-      "html": "<button class=\"ds-ghost\">About Ari</button>",
-      "css": ".ds-ghost{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:11px 24px;border:2px solid #171717;background:transparent;color:#171717;font-family:\"Bebas Neue\",Impact,sans-serif;font-size:1.45rem;letter-spacing:.02em;text-transform:uppercase;box-shadow:4px 4px 0 #171717;cursor:pointer;transition:transform .25s,box-shadow .25s}.ds-ghost:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 #171717}.ds-ghost:focus-visible{outline:3px solid #F53C17;outline-offset:3px}.ds-ghost:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #171717}"
+      "refersTo": "button-ink",
+      "description": "Near-black pill for use on orange.",
+      "html": "<button class=\"ds-ink\">Get Started Now</button>",
+      "css": ".ds-ink{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:13px 27px;border:0;border-radius:999px;background:#171717;color:#FEF6EB;font:700 16px \"Bricolage Grotesque\",system-ui,sans-serif;cursor:pointer;transition:transform .3s}.ds-ink:hover{transform:translateY(-2px)}.ds-ink:focus-visible{outline:3px solid #F53C17;outline-offset:4px}.ds-ink:active{transform:scale(.97)}"
     },
     {
-      "name": "Form Field",
+      "name": "Underline Field",
       "kind": "input",
       "refersTo": "field",
-      "description": "Ledger-style input with a visible uppercase label.",
+      "description": "Open field with a 2px underline on black.",
       "html": "<div class=\"ds-f\"><label for=\"x\">First Name</label><input id=\"x\"></div>",
-      "css": ".ds-f{display:grid;gap:4px}.ds-f label{font:700 13px Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase}.ds-f input{min-height:48px;padding:10px 12px;background:#F9F0E3;border:2px solid #171717;border-radius:0;font:17px Inter,sans-serif}.ds-f input:focus-visible{outline:3px solid #F53C17;outline-offset:0;background:#fff}"
+      "css": ".ds-f{display:grid;gap:2px;background:#171717;padding:16px}.ds-f label{font:700 13px \"Bricolage Grotesque\",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#A29D96}.ds-f input{min-height:52px;background:transparent;border:0;border-bottom:2px solid rgba(254,246,235,.35);color:#FEF6EB;font:18px \"Bricolage Grotesque\",sans-serif}.ds-f input:focus-visible{outline:0;border-bottom-color:#F53C17}"
     },
     {
-      "name": "Tape Box",
-      "kind": "card",
-      "refersTo": "tape-card",
-      "description": "Artist card: sand sleeve with a colour-blended photo.",
-      "html": "<div class=\"ds-tape\"><div class=\"ds-ph\"></div><p>Fin wheatley <span>[03]</span></p></div>",
-      "css": ".ds-tape{width:240px;background:#DBCEBC;border:2px solid #FEF6EB;padding:10px 10px 14px;color:#171717}.ds-ph{height:240px;background:#171717;position:relative}.ds-ph::after{content:\"\";position:absolute;inset:0;background:#F53C17;mix-blend-mode:color;opacity:.85}.ds-tape p{margin:8px 0 0;font:1.9rem \"Bebas Neue\",Impact,sans-serif;text-transform:uppercase;display:flex;justify-content:space-between}.ds-tape span{font:700 12px Inter,sans-serif}"
-    },
-    {
-      "name": "Section Strip",
+      "name": "Price Row",
       "kind": "custom",
-      "description": "Numbered header that opens every section.",
-      "html": "<div class=\"ds-strip\"><b>04</b><span>Pricing</span><i></i></div>",
-      "css": ".ds-strip{display:flex;gap:16px;align-items:center;border-top:2px solid #171717;padding-top:10px;font:700 13px Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase}.ds-strip b{font:24px \"Bebas Neue\",Impact,sans-serif;letter-spacing:0}.ds-strip i{flex:1;border-top:1px dashed #171717;opacity:.4}"
+      "description": "Name and descriptor left, price right, hairline below.",
+      "html": "<div class=\"ds-row\"><span><b>In house mix</b><small>Mixed by LEVPRODUCTIONS</small></span><strong>$600</strong></div>",
+      "css": ".ds-row{display:flex;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid rgba(23,23,23,.16);background:#FEF6EB;color:#171717}.ds-row b{display:block;font:700 18px \"Bricolage Grotesque\",sans-serif}.ds-row small{display:block;color:#655B4F;font:15px \"Bricolage Grotesque\",sans-serif}.ds-row strong{font:32px \"Bowlby One\",Impact,sans-serif;letter-spacing:-.02em}"
     }
   ],
   "narrative": {
-    "northStar": "The Session Sheet",
-    "overview": "The site is one recording session laid out on a studio track sheet. Every section is a numbered track and scrolling works like the tape transport. Two rooms alternate: cream sheet stock for paperwork, near-black control room for the work.",
+    "northStar": "The Minimal Poster",
+    "overview": "One loud idea per section, then air. Headlines are set in a fat poster face; everything else is quiet: flat colour fields, hairline rules, rounded photographs and a lot of empty space. The musical feeling comes from motion that responds to scroll, not from decoration.",
     "keyCharacteristics": [
-      "Bebas Neue lettering at poster scale against calm Inter body copy",
-      "Hard offset shadows on interactive things, soft tinted shadows on paper things",
-      "Numbering everywhere",
+      "Poster-scale Bowlby One against calm Bricolage Grotesque",
+      "No boxes: structure from spacing, hairlines and colour fields",
+      "Pills for actions, generous rounding for photographs",
       "Transform and opacity only, with a static fallback"
     ],
     "rules": [
       {
-        "name": "The Marks-Not-Fields Rule",
-        "body": "Orange is a mark on paper and a signal in the dark. It fills a whole region only once (the discovery band).",
+        "name": "The Big-Or-Absent Rule",
+        "body": "Orange is either a large field or large type, or it is not on the screen. Small orange text appears only on black.",
         "section": "colors"
       },
       {
         "name": "The Ink-On-Orange Rule",
-        "body": "Anything set on orange is near-black, never cream or white.",
+        "body": "Anything set on an orange fill is near-black.",
         "section": "colors"
       },
       {
-        "name": "The Tight-Caps Rule",
-        "body": "Display type is always uppercase with -0.03em tracking and line-height 0.9.",
+        "name": "The One-Face-Per-Job Rule",
+        "body": "Bowlby sets headings, prices and names only. Never body copy.",
         "section": "typography"
-      },
-      {
-        "name": "The Press Rule",
-        "body": "Buttons move toward their shadow when pressed; nothing glows.",
-        "section": "elevation"
       }
     ],
     "dos": [
+      "Do give each section one big type moment and leave the rest empty.",
       "Do set text on orange in #171717.",
-      "Do keep orange text only on dark grounds or at display size.",
-      "Do number things (sections, lanes, takes, tape boxes).",
-      "Do animate only transform and opacity, and give every moving thing a still fallback.",
-      "Do give every control a hover, focus-visible and active state and a 44px target."
+      "Do animate only transform and opacity, and give every moving thing a static fallback.",
+      "Do keep every control at 44px or larger with hover, focus-visible and active states."
     ],
     "donts": [
-      "Don't use rounded corners, glassmorphism or glow.",
-      "Don't introduce a third typeface or a colour outside the nine tokens.",
+      "Don't put content in boxes or cards; use space, a hairline or a colour change.",
+      "Don't add decorative motion that carries no information (no tickers, no spinning props).",
       "Don't autoplay audio; Spotify loads only on a click.",
-      "Don't hijack scroll: pins are bounded and native scrolling stays in charge."
+      "Don't introduce another typeface or colour outside the palette."
     ]
   }
 }

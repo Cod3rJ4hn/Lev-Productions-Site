@@ -27,7 +27,7 @@ Claude fills this in as it builds. Every dynamic feature (form, payment, booking
 - Storage: D1 table `submissions` (see `schema.sql`); the package is saved in the `meta` column as JSON.
 - I must: create the D1 database and paste its id into `wrangler.toml`, create the Turnstile widget (domain levproductions.com.au), create the Resend account/key and verify the sending domain, set the secrets, then submit a real test enquiry.
 
-### Spotify player (header "Listen" and artists "Have a listen")
+### Spotify player (artists "Have a listen" button)
 - What it does: opt-in. The playlist embed loads only when a visitor clicks, never on page load.
 - Needs: nothing. Playlist id lives in `public/index.html` (`#player-frame`).
 

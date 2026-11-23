@@ -8,53 +8,49 @@
   const reduced = () => root.classList.contains('rm');
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 
-  /* ---------- seeded waveform bars ---------- */
+  /* ---------- seeded waveform bars (service clips) ---------- */
   const rng = (seed) => () => ((seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296);
-  const bars = (el, count, seed, min = 14, max = 100) => {
+  const makeBars = (count, seed, min = 18, max = 100) => {
     const rand = rng(seed);
     const frag = document.createDocumentFragment();
     for (let i = 0; i < count; i++) {
       const b = document.createElement('i');
       const env = 0.55 + 0.45 * Math.sin((i / count) * Math.PI * 3.2 + seed);
       b.style.setProperty('--h', String(Math.round(min + (max - min) * rand() * env)));
-      b.style.setProperty('--i', String(i));
       frag.appendChild(b);
     }
-    el.appendChild(frag);
+    return frag;
   };
-  const wave = $('#wave');
-  if (wave) bars(wave, 120, 7);
-  $$('.clip').forEach((c, i) => {
-    const cover = $('.clip__cover', c);
-    const holder = document.createDocumentFragment();
-    const tmp = document.createElement('div');
-    bars(tmp, 56, 31 + i * 17, 20, 100);
-    while (tmp.firstChild) holder.appendChild(tmp.firstChild);
-    c.insertBefore(holder, cover);
-  });
+  $$('.clip').forEach((c, i) => c.insertBefore(makeBars(64, 31 + i * 17), $('.clip__cover', c)));
 
-  /* ---------- header: progress, timecode, reels ---------- */
-  const progress = $('.progress');
-  const tc = $('#tc');
-  const reels = $$('[data-reel]');
-  const SESSION = 222;
-  const pad = (n) => String(n).padStart(2, '0');
-  let ticking = false;
-  const update = () => {
-    ticking = false;
-    const max = root.scrollHeight - innerHeight;
-    const p = max > 0 ? clamp(scrollY / max) : 0;
-    if (progress) progress.style.transform = `scaleX(${p.toFixed(4)})`;
-    if (tc) {
-      const t = p * SESSION;
-      tc.textContent = `${pad(Math.floor(t / 60))}:${pad(Math.floor(t % 60))}:${pad(Math.floor((t % 1) * 30))}`;
-    }
-    if (!reduced()) reels.forEach((r, i) => { r.style.transform = `rotate(${(i ? -1 : 1) * scrollY * 0.32}deg)`; });
+  /* ---------- equaliser band: reacts to scroll ---------- */
+  const eq = $('#eq');
+  let eqBars = [];
+  let eqVisible = false;
+  const drawEq = () => {
+    const y = scrollY;
+    eqBars.forEach((b, i) => {
+      const v = 0.22 + 0.78 * Math.abs(Math.sin(y * 0.006 + i * 0.37) * Math.cos(y * 0.0031 + i * 0.11));
+      b.style.setProperty('--s', v.toFixed(3));
+    });
   };
-  const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
-  addEventListener('scroll', onScroll, { passive: true });
-  addEventListener('resize', onScroll, { passive: true });
-  update();
+  if (eq) {
+    const n = innerWidth < 700 ? 28 : 64;
+    for (let i = 0; i < n; i++) eq.appendChild(document.createElement('i'));
+    eqBars = $$('i', eq);
+    drawEq();
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((e) => { eqVisible = e[0].isIntersecting; }, { rootMargin: '100px' }).observe(eq);
+    } else {
+      eqVisible = true;
+    }
+  }
+  let ticking = false;
+  addEventListener('scroll', () => {
+    if (ticking || reduced() || !eqVisible) return;
+    ticking = true;
+    requestAnimationFrame(() => { ticking = false; drawEq(); });
+  }, { passive: true });
 
   /* ---------- menu ---------- */
   const menu = $('#menu');
@@ -83,7 +79,7 @@
   };
   if (!reduced()) counters.forEach((c) => { c.textContent = '0'; });
 
-  const targets = $$('[data-reveal], .wave, .plan, .fader');
+  const targets = $$('[data-reveal]');
   if ('IntersectionObserver' in window && !reduced()) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((en) => {
@@ -180,22 +176,6 @@
     addEventListener('load', () => ScrollTrigger.refresh());
   }
 
-  /* ---------- ticker pause ---------- */
-  const pause = $('#pause');
-  const ticker = $('#marquee');
-  pause.addEventListener('click', () => {
-    const on = ticker.classList.toggle('paused');
-    pause.setAttribute('aria-pressed', String(on));
-    pause.textContent = on ? 'Play ticker' : 'Pause ticker';
-  });
-
-  /* ---------- FAQ take counter ---------- */
-  const take = $('#take');
-  $$('.q').forEach((d) => d.addEventListener('toggle', () => {
-    if (d.open) take.textContent = d.dataset.n;
-    else if (!$('.q[open]')) take.textContent = '00';
-  }));
-
   /* ---------- Spotify (opt-in, loads on click) ---------- */
   const player = $('#player');
   const frame = $('#player-frame');
@@ -239,7 +219,7 @@
     if (tsLoaded || !siteKey) return;
     tsLoaded = true;
     window.__tsReady = () => {
-      window.turnstile.render('#ts', { sitekey: siteKey, callback: (t) => { tsToken = t; }, 'expired-callback': () => { tsToken = ''; } });
+      window.turnstile.render('#ts', { sitekey: siteKey, theme: 'dark', callback: (t) => { tsToken = t; }, 'expired-callback': () => { tsToken = ''; } });
     };
     const s = document.createElement('script');
     s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=__tsReady';

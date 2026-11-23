@@ -19,367 +19,305 @@
 <meta property="og:locale" content="en_AU">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="fonts/bebas-neue-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" type="image/avif" href="img/hero-1600.avif" imagesrcset="img/hero-800.avif 800w, img/hero-1600.avif 1600w" imagesizes="100vw" fetchpriority="high">
+<link rel="preload" href="fonts/bowlby-one-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin>
 <script>
 document.documentElement.classList.add('js');
 if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('rm');
 setTimeout(function () { if (!window.__lev) document.documentElement.classList.add('rm'); }, 3500);
 </script>
 <style>
-@font-face{font-family:"Bebas Neue";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/bebas-neue-latin.woff2) format("woff2")}
-@font-face{font-family:"Inter";font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/inter-latin.woff2) format("woff2")}
+@font-face{font-family:"Bowlby One";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/bowlby-one-latin.woff2) format("woff2")}
+@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/bricolage-latin.woff2) format("woff2")}
+@font-face{font-family:"Bowlby Fallback";src:local("Arial Black"),local("Impact");size-adjust:92%;ascent-override:92%;descent-override:24%}
 
 :root{
   --cream:#FEF6EB;--cream-2:#F9F0E3;--sand:#DBCEBC;--orange:#F53C17;
-  --ink:#171717;--ink-2:#212121;--ink-3:#1B1B1B;--brown:#655B4F;--grey:#A29D96;
-  --display:"Bebas Neue",Impact,"Arial Narrow",sans-serif;
-  --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --sp-1:.5rem;--sp-2:1rem;--sp-3:1.5rem;--sp-4:2.5rem;--sp-5:4rem;--sp-6:7rem;
-  --gutter:clamp(1rem,4vw,3rem);
-  --bar-h:64px;
-  --spring:cubic-bezier(.2,.9,.25,1.15);
+  --ink:#171717;--ink-2:#212121;--brown:#655B4F;--grey:#A29D96;
+  --display:"Bowlby One","Bowlby Fallback",Impact,sans-serif;
+  --body:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --sp-1:.5rem;--sp-2:1rem;--sp-3:1.5rem;--sp-4:2.5rem;--sp-5:4.5rem;--sp-6:8rem;
+  --gutter:clamp(1.25rem,5vw,3.5rem);
+  --bar-h:72px;
+  --r:24px;
   --out:cubic-bezier(.16,1,.3,1);
-  --shadow-1:0 1px 0 rgba(23,23,23,.06),0 6px 14px -6px rgba(101,91,79,.28);
-  --shadow-2:0 2px 0 rgba(23,23,23,.05),0 18px 34px -14px rgba(101,91,79,.45),0 6px 12px -6px rgba(245,60,23,.14);
+  --spring:cubic-bezier(.2,.9,.25,1.15);
+  --lift:0 1px 0 rgba(23,23,23,.04),0 22px 40px -22px rgba(101,91,79,.45);
 }
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:calc(var(--bar-h) + 8px);-webkit-text-size-adjust:100%}
-html{scrollbar-color:var(--orange) var(--ink)}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--bar-h) + 8px);-webkit-text-size-adjust:100%;scrollbar-color:var(--orange) var(--ink)}
 ::selection{background:var(--orange);color:var(--ink)}
-input,textarea{caret-color:var(--orange)}
 body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;max-width:100%;height:auto}
-h1,h2,h3,p,ul,ol,dl,dd,figure{margin:0}
+h1,h2,h3,h4,p,ul,ol,dl,dd,figure{margin:0}
 ul,ol{padding:0;list-style:none}
 a{color:inherit}
 button,input,textarea{font:inherit;color:inherit}
-:focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:2px}
+input,textarea{caret-color:var(--orange)}
+:focus-visible{outline:3px solid var(--orange);outline-offset:4px;border-radius:6px}
 .on-orange :focus-visible{outline-color:var(--ink)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.skip{position:absolute;left:var(--sp-2);top:-4rem;z-index:100;background:var(--ink);color:var(--cream);padding:.75rem 1rem;text-decoration:none}
+.skip{position:absolute;left:var(--sp-2);top:-4rem;z-index:100;background:var(--ink);color:var(--cream);padding:.75rem 1rem;border-radius:999px;text-decoration:none}
 .skip:focus{top:var(--sp-2)}
-.wrap{width:min(100% - 2*var(--gutter),1360px);margin-inline:auto}
-
-/* ---------- type ---------- */
-.display{font-family:var(--display);font-weight:400;line-height:.9;letter-spacing:-.03em;text-transform:uppercase}
-h2.display{font-size:clamp(3.4rem,10.5vw,8.5rem)}
-h3.display{font-size:clamp(1.9rem,3.4vw,2.8rem)}
-.eyebrow{display:block;font-size:.8125rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
-.lede{max-width:58ch;color:var(--brown)}
-.dark .lede{color:var(--grey)}
-
-/* ---------- sheet strip (section header) ---------- */
-.strip{display:flex;align-items:center;gap:var(--sp-2);border-top:2px solid currentColor;padding-top:.65rem;margin-bottom:var(--sp-4);font-size:.8125rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
-.strip .n{font-family:var(--display);font-size:1.5rem;letter-spacing:0;line-height:1}
-.strip .sp{flex:1;border-top:1px dashed currentColor;opacity:.4}
-.strip .rec-dot{width:.6rem;height:.6rem}
-.sheet{background-image:repeating-linear-gradient(90deg,transparent 0,transparent calc(100%/12 - 1px),rgba(23,23,23,.07) calc(100%/12 - 1px),rgba(23,23,23,.07) calc(100%/12))}
+.wrap{width:min(100% - 2*var(--gutter),1280px);margin-inline:auto}
 section{position:relative}
 .dark{background:var(--ink);color:var(--cream)}
 
+/* ---------- type ---------- */
+.poster{font-family:var(--display);font-weight:400;line-height:.98;letter-spacing:-.025em}
+h2.poster{font-size:clamp(2.2rem,6.4vw,5.4rem)}
+.label{font-size:.8125rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brown)}
+.dark .label{color:var(--grey)}
+.lede{max-width:46ch;color:var(--brown);font-size:1.15rem}
+.dark .lede{color:var(--grey)}
+.arrow{display:inline-flex;align-items:center;gap:.5rem;min-height:44px;font-weight:700;text-decoration:none;border-bottom:2px solid currentColor;width:max-content}
+.arrow:hover{color:var(--orange)}
+.dark .arrow:hover{color:var(--orange)}
+
 /* ---------- buttons ---------- */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:48px;padding:.7rem 1.5rem;border:2px solid var(--ink);background:var(--orange);color:var(--ink);font-family:var(--display);font-size:1.45rem;letter-spacing:.02em;line-height:1;text-decoration:none;text-transform:uppercase;cursor:pointer;box-shadow:4px 4px 0 var(--ink);transition:transform .25s var(--spring),box-shadow .25s var(--spring)}
-.btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
-.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
-.btn--ghost{background:transparent;color:inherit;border-color:currentColor;box-shadow:4px 4px 0 currentColor}
-.btn--ghost:hover{box-shadow:7px 7px 0 currentColor}
-.btn--ghost:active{box-shadow:1px 1px 0 currentColor}
-.btn--cream{background:var(--cream);color:var(--ink)}
-.btn[disabled]{opacity:.6;cursor:progress;transform:none}
-.rec-dot{display:inline-block;width:.7rem;height:.7rem;border-radius:50%;background:var(--orange)}
-html:not(.rm) .rec-dot{animation:rec 1.4s ease-in-out 4}
-@keyframes rec{0%,100%{opacity:1}50%{opacity:.25}}
+.btn{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:.8rem 1.7rem;border:0;border-radius:999px;background:var(--orange);color:var(--ink);font-family:var(--body);font-weight:700;font-size:1rem;letter-spacing:.01em;text-decoration:none;cursor:pointer;transition:transform .3s var(--spring),color .25s}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--ink);transform:translateY(102%);transition:transform .45s var(--out)}
+.btn:hover{color:var(--cream);transform:translateY(-2px)}
+.btn:hover::before{transform:none}
+.btn:active{transform:scale(.97)}
+.btn--ink{background:var(--ink);color:var(--cream)}
+.btn--ink::before{background:var(--cream)}
+.btn--ink:hover{color:var(--ink)}
+.btn--ghost{background:transparent;color:inherit;box-shadow:inset 0 0 0 2px currentColor}
+.btn--ghost::before{background:var(--cream)}
+.btn--ghost:hover{color:var(--ink)}
+.btn[disabled]{opacity:.6;cursor:progress}
 
 /* ---------- header ---------- */
-.bar{position:sticky;top:0;z-index:50;height:var(--bar-h);background:var(--cream);border-bottom:2px solid var(--ink)}
+.bar{position:sticky;top:0;z-index:50;height:var(--bar-h);background:var(--cream)}
 .bar__in{display:flex;align-items:center;gap:var(--sp-2);height:100%}
-.logo{display:inline-flex;align-items:center;min-height:44px;font-family:var(--display);font-size:1.7rem;letter-spacing:-.01em;line-height:1;text-decoration:none;margin-right:auto;white-space:nowrap}
-.tc{display:none;align-items:center;gap:.5rem;font-size:.8125rem;font-weight:700;letter-spacing:.08em;font-variant-numeric:tabular-nums;color:var(--brown)}
-.nav{position:fixed;inset:var(--bar-h) 0 auto 0;background:var(--cream);border-bottom:2px solid var(--ink);padding:var(--sp-2) var(--gutter) var(--sp-3);display:none;flex-direction:column}
+.logo{display:inline-flex;align-items:center;min-height:44px;margin-right:auto;font-family:var(--display);font-size:1.05rem;letter-spacing:-.01em;text-transform:uppercase;text-decoration:none;white-space:nowrap}
+.nav{position:fixed;inset:var(--bar-h) 0 auto 0;background:var(--cream);padding:var(--sp-2) var(--gutter) var(--sp-3);display:none;flex-direction:column;box-shadow:0 30px 30px -30px rgba(23,23,23,.3)}
 .nav.open{display:flex}
-.nav a{display:flex;align-items:center;min-height:52px;font-family:var(--display);font-size:2.2rem;letter-spacing:-.01em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(23,23,23,.15)}
+.nav a{display:flex;align-items:center;min-height:56px;font-family:var(--display);font-size:1.7rem;text-decoration:none;border-bottom:1px solid rgba(23,23,23,.12)}
 .nav a:hover{color:var(--orange)}
 .bar__book{display:none}
-.menu{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;background:none;border:2px solid var(--ink);cursor:pointer}
-.menu span,.menu span::before,.menu span::after{display:block;width:20px;height:2px;background:var(--ink);transition:transform .25s var(--out)}
+.menu{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;background:none;border:0;border-radius:50%;cursor:pointer}
+.menu span,.menu span::before,.menu span::after{display:block;width:22px;height:2.5px;border-radius:2px;background:var(--ink);transition:transform .3s var(--out)}
 .menu span{position:relative}.menu span::before,.menu span::after{content:"";position:absolute;left:0}
-.menu span::before{top:-6px}.menu span::after{top:6px}
+.menu span::before{top:-7px}.menu span::after{top:7px}
 .menu[aria-expanded=true] span{background:transparent}
-.menu[aria-expanded=true] span::before{transform:translateY(6px) rotate(45deg)}
-.menu[aria-expanded=true] span::after{transform:translateY(-6px) rotate(-45deg)}
-.listen{min-height:44px;padding:.35rem .9rem;font-size:1.15rem;background:transparent;box-shadow:none}
-.listen:hover{background:var(--ink);color:var(--cream);box-shadow:none;transform:none}
-.progress{position:absolute;left:0;bottom:-2px;height:4px;width:100%;background:var(--orange);transform:scaleX(0);transform-origin:left}
-@media (min-width:480px){.tc{display:inline-flex}}
+.menu[aria-expanded=true] span::before{transform:translateY(7px) rotate(45deg)}
+.menu[aria-expanded=true] span::after{transform:translateY(-7px) rotate(-45deg)}
 @media (min-width:1000px){
   .menu{display:none}
-  .nav{position:static;display:flex;flex-direction:row;gap:.25rem;padding:0;border:0;background:none}
-  .nav a{min-height:44px;padding:0 .8rem;font-family:var(--body);font-size:.8125rem;font-weight:700;letter-spacing:.12em;border:0;white-space:nowrap}
-  .bar__book{display:inline-flex;min-height:44px;padding:.35rem 1rem;font-size:1.15rem;white-space:nowrap}
+  .nav{position:static;display:flex;flex-direction:row;gap:.25rem;padding:0;background:none;box-shadow:none}
+  .nav a{position:relative;min-height:44px;padding:0 .85rem;font-family:var(--body);font-size:.95rem;font-weight:600;border:0;white-space:nowrap}
+  .nav a::after{content:"";position:absolute;left:.85rem;right:.85rem;bottom:8px;height:2px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--out)}
+  .nav a:hover{color:inherit}.nav a:hover::after{transform:scaleX(1)}
+  .bar__book{display:inline-flex;min-height:46px;padding:.5rem 1.3rem;white-space:nowrap}
 }
-.listen{white-space:nowrap}
-@media (min-width:480px) and (max-width:1199px){.tc{display:none}}
-@media (min-width:1200px){.tc{display:inline-flex}}
 
-/* ---------- 01 hero ---------- */
-.hero{min-height:calc(100svh - var(--bar-h));display:grid;align-items:end;overflow:hidden;color:var(--cream);background:var(--ink)}
-.hero__img,.hero__img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(23,23,23,.12) 0%,rgba(23,23,23,.3) 45%,rgba(23,23,23,.86) 100%),radial-gradient(60% 50% at 20% 85%,rgba(245,60,23,.28),transparent 70%)}
-.hero__in{position:relative;z-index:2;padding-block:var(--sp-4) var(--sp-4)}
-.hero__meta{display:flex;flex-wrap:wrap;gap:.4rem 1.5rem;margin-bottom:var(--sp-2);font-size:.8125rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
-.hero h1{--hs:26vw;font-size:clamp(4.2rem,min(var(--hs),24svh),19rem);color:var(--cream)}
+/* ---------- hero ---------- */
+.hero{padding-block:var(--sp-4) var(--sp-5)}
+.hero h1{--hs:14.5vw;font-size:clamp(3rem,min(var(--hs),17svh),13rem);text-transform:uppercase}
 .hero h1 span{display:block}
 .hero h1 .rel{color:var(--orange)}
-.hero__row{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:var(--sp-3);margin-top:var(--sp-3)}
-.hero__copy{max-width:36ch}
-.hero__copy .tag{font-family:var(--display);font-size:clamp(1.8rem,4vw,2.6rem);line-height:1;letter-spacing:-.01em;text-transform:uppercase;margin-bottom:.4rem}
-.hero__copy p:last-child{color:var(--sand)}
-.cta{position:relative;display:inline-block;padding:14px}
-.cta .btn{position:relative;z-index:1}
-.scribble{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke:var(--cream);stroke-width:2.5;stroke-linecap:round;pointer-events:none}
-.reels{position:absolute;z-index:2;right:var(--gutter);top:var(--sp-3);display:flex;gap:6px;color:var(--cream);opacity:.9}
-.reel{width:clamp(64px,11vw,150px);height:auto;will-change:transform}
-@media (min-width:900px){.hero h1{--hs:16vw}.reels{top:calc(var(--sp-4) + 1rem)}}
+.hero__row{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:var(--sp-3);margin-top:var(--sp-4)}
+.hero__copy{max-width:34ch}
+.hero__copy .tag{font-family:var(--display);font-size:clamp(1.2rem,2.4vw,1.7rem);line-height:1.15;margin-bottom:.5rem}
+.hero__copy p:last-child{color:var(--brown)}
+.hero__photo{display:block;margin-top:var(--sp-4);border-radius:var(--r);overflow:hidden;background:var(--sand)}
+.hero__photo img{width:100%;aspect-ratio:16/8;object-fit:cover}
+@media (max-width:700px){.hero__photo img{aspect-ratio:4/3}}
+@media (min-width:900px){.hero h1{--hs:12vw}}
 html.js:not(.rm) .hero h1 span{animation:rise .9s var(--out) both}
-html.js:not(.rm) .hero h1 span:nth-child(2){animation-delay:.09s}
-html.js:not(.rm) .hero h1 span:nth-child(3){animation-delay:.18s}
-html.js:not(.rm) .hero__row,html.js:not(.rm) .hero__meta{animation:rise .9s var(--out) .35s both}
-html.js:not(.rm) .scribble{animation:pop .7s var(--spring) .9s both}
-@keyframes rise{from{opacity:0;transform:translateY(42px)}to{opacity:1;transform:none}}
-@keyframes pop{from{opacity:0;transform:scale(.8) rotate(-4deg)}to{opacity:1;transform:none}}
+html.js:not(.rm) .hero h1 span:nth-child(2){animation-delay:.08s}
+html.js:not(.rm) .hero h1 span:nth-child(3){animation-delay:.16s}
+html.js:not(.rm) .hero__row{animation:rise .9s var(--out) .3s both}
+html.js:not(.rm) .hero__photo{animation:rise 1s var(--out) .45s both}
+@keyframes rise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
 
 /* ---------- reveals ---------- */
-html.js:not(.rm) [data-reveal]{opacity:0;transform:translateY(28px);transition:opacity .8s var(--out),transform .8s var(--out);transition-delay:calc(var(--d,0)*90ms)}
+html.js:not(.rm) [data-reveal]{opacity:0;transform:translateY(32px);transition:opacity .9s var(--out),transform .9s var(--out);transition-delay:calc(var(--d,0)*100ms)}
 html.js:not(.rm) [data-reveal].in{opacity:1;transform:none}
 
-/* ---------- 02 my job ---------- */
-.job{padding-block:var(--sp-6)}
-.job__grid{display:grid;gap:var(--sp-4)}
-.job__head .eyebrow{margin-bottom:var(--sp-1)}
-.job h2 span{display:block}
-.job__copy{display:grid;gap:var(--sp-2);max-width:56ch}
-.job__copy .btn{justify-self:start;margin-top:var(--sp-1)}
-.photo{position:relative;background:var(--sand);padding:10px 10px 38px;box-shadow:var(--shadow-2);transform:rotate(var(--r,2deg))}
-.photo img{width:100%;aspect-ratio:3/4;object-fit:cover}
-.photo::before{content:"";position:absolute;top:-14px;left:50%;width:96px;height:28px;margin-left:-48px;background:rgba(245,60,23,.78);transform:rotate(-3deg)}
-.photo figcaption{position:absolute;left:12px;bottom:8px;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
-.wave{display:flex;align-items:center;gap:3px;height:96px;margin-top:var(--sp-5);overflow:hidden}
-.wave i{flex:1;min-width:2px;height:calc(var(--h)*1%);background:var(--ink);border-radius:2px;transform-origin:center;transition:transform .6s var(--out);transition-delay:calc(var(--i)*9ms)}
-.wave i:nth-child(7n){background:var(--orange)}
-html.js:not(.rm) .wave i{transform:scaleY(.06)}
-html.js:not(.rm) .wave.in i{transform:none}
+/* ---------- my job ---------- */
+.job{padding-block:var(--sp-5) var(--sp-4)}
+.job h2{margin-top:var(--sp-2);max-width:14ch}
+.job__grid{display:grid;gap:var(--sp-4);margin-top:var(--sp-5)}
+.round{border-radius:var(--r);overflow:hidden;background:var(--sand);box-shadow:var(--lift)}
+.round img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.job__copy{display:grid;gap:var(--sp-2);align-content:start;max-width:54ch}
+.job__copy .arrow{margin-top:var(--sp-1)}
 @media (min-width:900px){
-  .job__grid{grid-template-columns:5fr 4fr 3fr;align-items:start}
-  .job__photo{margin-top:var(--sp-5)}
+  .job__grid{grid-template-columns:5fr 6fr;gap:var(--sp-5);align-items:end}
+  .job__copy{padding-bottom:var(--sp-2)}
 }
 
-/* ---------- 03 services (timeline) ---------- */
-.svc{padding-block:var(--sp-4);min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);align-content:center;overflow:hidden}
-.svc__grid{display:grid;gap:var(--sp-3)}
-.svc .strip{margin-bottom:var(--sp-3)}
+/* ---------- eq band ---------- */
+.eq{display:flex;align-items:center;justify-content:space-between;gap:4px;height:120px;margin-block:var(--sp-5)}
+.eq i{flex:1;max-width:10px;height:100%;border-radius:999px;background:var(--ink);transform-origin:center;transform:scaleY(var(--s,.2))}
+.eq i:nth-child(5n){background:var(--orange)}
+
+/* ---------- services ---------- */
+.svc{padding-block:var(--sp-5);min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);align-content:center;overflow:hidden}
+.svc__grid{display:grid;gap:var(--sp-4)}
 .svc__head .lede{margin-top:var(--sp-2)}
-.lanes{position:relative;display:grid;gap:0}
-.lane{display:grid;gap:.5rem;padding-block:.9rem;border-top:1px solid rgba(254,246,235,.18)}
-.lane__body{display:grid;gap:.45rem;min-width:0}
-.lane__label{display:flex;align-items:baseline;gap:.6rem;color:var(--cream);transition:color .3s}
+.lanes{position:relative;display:grid}
+.lane{display:grid;gap:.6rem;padding-block:1.1rem;border-top:1px solid rgba(254,246,235,.16)}
+.lane__label{display:flex;align-items:baseline;gap:.7rem}
 .lane__label .no{font-size:.8125rem;font-weight:700;letter-spacing:.1em;color:var(--grey)}
-.lane__label h3{font-size:clamp(2rem,4vw,2.8rem)}
+.lane__label h3{font-family:var(--display);font-weight:400;font-size:clamp(1.3rem,2.2vw,1.7rem);line-height:1.05;letter-spacing:-.01em;transition:color .3s}
 .lane.is-on .lane__label h3{color:var(--orange)}
-.vu{display:inline-flex;align-items:flex-end;gap:2px;height:16px;margin-left:auto}
-.vu b{width:4px;height:100%;background:var(--orange);transform-origin:bottom;transform:scaleY(.25)}
-.lane.is-on .vu b{animation:vu .55s ease-in-out 12 alternate}
-.lane.is-on .vu b:nth-child(2){animation-delay:.12s}.lane.is-on .vu b:nth-child(3){animation-delay:.27s}.lane.is-on .vu b:nth-child(4){animation-delay:.05s}
-html.rm .lane.is-on .vu b{animation:none;transform:scaleY(.6)}
-@keyframes vu{from{transform:scaleY(.2)}to{transform:scaleY(1)}}
-.clip{position:relative;height:42px;margin-left:var(--cs,0%);width:var(--cw,100%);background:var(--orange);border-radius:3px;overflow:hidden;display:flex;align-items:center;gap:2px;padding-inline:6px}
-.clip i{flex:1;min-width:1px;height:calc(var(--h)*1%);background:var(--ink);border-radius:1px;opacity:.85}
-.clip__cover{position:absolute;inset:0;background:var(--ink-2);transform-origin:right;transform:scaleX(0)}
+.lane__body{display:grid;gap:.55rem;min-width:0}
+.clip{position:relative;height:30px;margin-left:var(--cs,0%);width:var(--cw,100%);display:flex;align-items:center;gap:2px;overflow:hidden}
+.clip i{flex:1;min-width:1px;height:calc(var(--h)*1%);background:var(--orange);border-radius:2px}
+.clip__cover{position:absolute;inset:0;background:var(--ink);transform-origin:right;transform:scaleX(0)}
 .svc.is-scrub .clip__cover{transform:scaleX(1)}
-.lane__desc{color:var(--sand);max-width:60ch;transition:color .3s}
+.lane__desc{color:var(--sand);max-width:58ch;transition:color .3s}
 .svc.is-scrub .lane__desc{color:var(--grey)}
 .svc.is-scrub .lane.is-on .lane__desc{color:var(--cream)}
-.playhead{display:none;position:absolute;top:-8px;bottom:0;left:0;width:2px;background:var(--cream);z-index:3}
-.playhead::before{content:"";position:absolute;top:0;left:-6px;border:7px solid transparent;border-top-color:var(--cream);border-bottom:0}
+.playhead{display:none;position:absolute;top:0;bottom:0;left:0;width:2px;background:var(--cream);z-index:3}
+.playhead::before{content:"";position:absolute;top:-2px;left:-5px;width:12px;height:12px;border-radius:50%;background:var(--cream)}
 .svc.is-scrub .playhead{display:block}
 @media (min-width:1000px){
-  .svc__grid{grid-template-columns:4fr 8fr;align-items:center;gap:var(--sp-5)}
-  .lane{grid-template-columns:12.5rem 1fr;column-gap:var(--sp-3);align-items:start}
-  .lane__label{flex-wrap:wrap;align-content:start;row-gap:.2rem}
-  .lane__label h3{flex-basis:100%;order:2}
-  .vu{order:1;margin-left:auto}
-  .playhead{left:calc(12.5rem + var(--sp-3))}
+  .svc__grid{grid-template-columns:4fr 7fr;align-items:center;gap:var(--sp-5)}
+  .lane{grid-template-columns:11rem 1fr;column-gap:var(--sp-3);align-items:start}
+  .lane__label{flex-wrap:wrap;row-gap:.1rem}
+  .lane__label h3{flex-basis:100%}
+  .playhead{left:calc(11rem + var(--sp-3))}
 }
 
-/* ---------- 04 pricing ---------- */
-.pricing{padding-block:var(--sp-6);background-color:var(--cream-2)}
-.pricing__head{display:grid;gap:var(--sp-2);margin-bottom:var(--sp-4)}
-
-.plans{display:grid;gap:var(--sp-3)}
-.plan{position:relative;display:flex;flex-direction:column;gap:var(--sp-2);padding:var(--sp-3);background:var(--cream);border:2px solid var(--ink);box-shadow:var(--shadow-2)}
-.plan__tags{display:flex;flex-wrap:wrap;gap:.4rem}
-.plan__tags li{padding:.2rem .6rem;border:1.5px solid var(--ink);font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
-.plan__sub{font-family:var(--display);font-size:1.7rem;line-height:1;text-transform:uppercase;color:var(--orange)}
-.price{position:relative;display:inline-block;font-family:var(--display);font-size:clamp(4.6rem,9vw,7rem);line-height:.85;letter-spacing:-.03em;margin-top:var(--sp-1)}
-.price svg{position:absolute;left:-10px;top:-8px;width:calc(100% + 20px);height:calc(100% + 16px);fill:none;stroke:var(--orange);stroke-width:3;stroke-linecap:round;pointer-events:none}
-html.js:not(.rm) .price svg{opacity:0;transform:scale(.85) rotate(-3deg);transition:opacity .5s .5s,transform .7s var(--spring) .5s}
-html.js:not(.rm) .plan.in .price svg{opacity:1;transform:none}
-.boxes{display:flex;flex-wrap:wrap;gap:6px;margin-top:.4rem}
-.boxes i{width:26px;height:26px;border:2px solid var(--ink);background:var(--orange)}
-html.js:not(.rm) .boxes i{background:transparent;transition:background .3s;transition-delay:calc(var(--i)*120ms + .3s)}
-html.js:not(.rm) .plan.in .boxes i{background:var(--orange)}
+/* ---------- pricing ---------- */
+.pricing{padding-block:var(--sp-6)}
+.pricing__head{display:grid;gap:var(--sp-2);margin-bottom:var(--sp-5)}
+.plans{display:grid;gap:var(--sp-5)}
+.plan{display:flex;flex-direction:column;gap:var(--sp-2)}
+.plan__tags{font-size:.8125rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brown)}
+.plan__sub{font-family:var(--display);font-weight:400;font-size:clamp(1.4rem,2.4vw,1.9rem);line-height:1.1;letter-spacing:-.015em}
+.price{font-family:var(--display);font-size:clamp(3.6rem,8.5vw,6.8rem);line-height:1;letter-spacing:-.04em;margin-block:var(--sp-1) 0}
 .plan__meta{font-weight:700}
-.feat{display:grid;gap:.4rem;padding-top:var(--sp-2);border-top:1px dashed var(--brown);font-size:.97rem}
-.feat li{position:relative;padding-left:1.4rem}
-.feat li::before{content:"";position:absolute;left:0;top:.62em;width:.6rem;height:.6rem;background:var(--orange);border:1.5px solid var(--ink)}
-.extra{font-size:.97rem;color:var(--brown)}
+.feat{display:grid;gap:.5rem;padding-top:var(--sp-2);border-top:1px solid rgba(23,23,23,.16)}
+.feat li{display:flex;gap:.7rem}
+.feat li::before{content:"";flex:0 0 .45rem;height:.45rem;margin-top:.7em;border-radius:50%;background:var(--orange)}
+.extra{color:var(--brown)}
 .extra strong{color:var(--ink)}
-.plan .btn{align-self:flex-start;margin-top:auto}
-.mix{margin-top:var(--sp-5)}
-.mix h3{margin-bottom:var(--sp-3)}
-.faders{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-3) var(--sp-2)}
-.fader{display:grid;grid-template-rows:auto 172px auto;justify-items:center;gap:.6rem;padding:var(--sp-2);background:var(--cream);border:2px solid var(--ink);text-align:center}
-.fader .grp{font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brown)}
-.fader .track{position:relative;margin-top:20px;width:8px;height:150px;background:var(--ink);border-radius:4px}
-.fader .knob{position:absolute;left:50%;bottom:calc(var(--lv)*1% - 14px);width:44px;height:28px;margin-left:-22px;background:var(--orange);border:2px solid var(--ink);border-radius:3px;box-shadow:var(--shadow-1);transition:transform .8s var(--spring)}
-.fader .knob::after{content:"";position:absolute;left:6px;right:6px;top:11px;height:2px;background:var(--ink)}
-html.js:not(.rm) .fader .knob{transform:translateY(calc((var(--lv)*1.5px) - 0px))}
-html.js:not(.rm) .fader.in .knob{transform:none}
-.fader h4{margin:0;font-family:var(--display);font-weight:400;font-size:1.55rem;line-height:1;letter-spacing:-.01em;text-transform:uppercase}
-.fader p{font-size:.85rem;line-height:1.4;color:var(--brown)}
-.fader p.amt{color:var(--ink);font-family:var(--display);font-size:2.6rem;line-height:1;letter-spacing:-.02em}
-@media (min-width:760px){.plans{grid-template-columns:1fr 1fr}.faders{grid-template-columns:repeat(4,1fr)}}
-
-/* ---------- discovery band ---------- */
-.band{background:var(--orange);color:var(--ink);overflow:hidden;padding-block:var(--sp-5)}
-.marquee{display:flex;width:max-content;font-family:var(--display);font-size:clamp(4rem,12vw,10rem);line-height:.95;letter-spacing:-.03em;text-transform:uppercase;white-space:nowrap}
-.marquee span{padding-right:.4em}
-html:not(.rm) .marquee{animation:slide 28s linear infinite}
-html:not(.rm) .marquee.paused{animation-play-state:paused}
-.band .pause{min-height:44px;padding:.4rem 1rem;font-size:1rem;background:transparent;color:var(--ink);border-color:var(--ink);box-shadow:none}
-.band .pause:hover{background:var(--ink);color:var(--orange);transform:none;box-shadow:none}
-@keyframes slide{to{transform:translateX(-50%)}}
-html.rm .marquee{width:auto;white-space:normal;padding-inline:var(--gutter);font-size:clamp(3rem,10vw,8rem)}
-html.rm .marquee span:nth-child(n+2){display:none}
-.band__row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--sp-3);margin-top:var(--sp-4)}
-.band__btns{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-2)}
-html.rm .pause{display:none}
-.band__row p{font-family:var(--display);font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1;letter-spacing:-.01em;text-transform:uppercase}
-.band .btn{background:var(--ink);color:var(--cream);box-shadow:4px 4px 0 var(--cream)}
-.band .btn:hover{box-shadow:7px 7px 0 var(--cream)}.band .btn:active{box-shadow:1px 1px 0 var(--cream)}
-
-/* ---------- 05 artists ---------- */
-.artists{padding-block:var(--sp-4);min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);align-content:center;overflow:hidden}
-.artists__head{display:grid;gap:var(--sp-2);margin-bottom:var(--sp-4)}
-.artists__head h2{max-width:17ch;font-size:clamp(3rem,6vw,5.4rem)}
-.artists__head .btn{justify-self:start}
-.shelf{overflow-x:auto;scroll-snap-type:x mandatory;padding:var(--sp-2) var(--gutter) var(--sp-3);scrollbar-color:var(--orange) var(--ink-2)}
-.shelf__track{display:flex;gap:var(--sp-3);width:max-content}
-.tape{position:relative;flex:0 0 auto;width:min(68vw,270px);scroll-snap-align:start;background:var(--sand);color:var(--ink);padding:10px 10px 14px;border:2px solid var(--cream);transform:rotate(var(--r,0deg));transition:transform .45s var(--spring)}
-.tape:hover,.tape:focus-within{transform:translateY(-8px) rotate(0)}
-.thumb{position:relative;overflow:hidden;background:var(--ink)}
-.thumb img{width:100%;aspect-ratio:15/16;object-fit:cover}
-.thumb::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(23,23,23,.6),transparent 55%)}
-.thumb::after{content:"";position:absolute;inset:0;z-index:2;background:var(--orange);mix-blend-mode:color;opacity:.85;transition:opacity .45s}
-.tape:hover .thumb::after,.tape:focus-within .thumb::after{opacity:0}
-.tape__label{display:flex;align-items:baseline;justify-content:space-between;gap:.5rem;margin-top:.6rem}
-.tape__label h3{font-family:var(--display);font-weight:400;font-size:1.9rem;line-height:1;letter-spacing:-.01em;text-transform:uppercase}
-.tape__label span{font-size:.75rem;font-weight:700;letter-spacing:.1em;color:var(--ink-2)}
-.shelf.is-pinned{overflow:visible;scroll-snap-type:none}
-@media (min-width:1000px){.artists__head{grid-template-columns:5fr 4fr;align-items:end}.tape{width:290px}}
-
-/* ---------- 06 about ---------- */
-.about{padding-block:var(--sp-6);background-color:var(--cream-2)}
-.about__grid{display:grid;gap:var(--sp-4)}
-.about__copy{display:grid;gap:var(--sp-2);max-width:62ch}
-.about__copy h2{margin-bottom:var(--sp-1)}
-.about__copy .btn{justify-self:start;margin-top:var(--sp-1)}
-.stats{display:flex;flex-wrap:wrap;gap:var(--sp-3) var(--sp-4);margin-top:var(--sp-2)}
-.stat b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(4rem,9vw,6.5rem);line-height:.85;letter-spacing:-.03em;color:var(--orange)}
-.stat>span{display:block;max-width:20ch;font-size:.9rem;line-height:1.4;font-weight:700;color:var(--brown)}
-.about__photos{position:relative;display:grid;gap:var(--sp-3);align-content:start}
-.about__photos .small{display:none}
-@media (min-width:900px){
-  .about__grid{grid-template-columns:5fr 6fr;gap:var(--sp-5);align-items:center}
-  .about__photos{min-height:640px;display:block}
-  .about__photos .main{width:72%;margin-left:6%}
-  .about__photos .small{display:block;position:absolute;width:38%}
-  .about__photos .s1{right:0;top:-2%}
-  .about__photos .s2{left:0;bottom:-4%}
+.plan .btn{align-self:flex-start;margin-top:var(--sp-1)}
+.mix{margin-top:var(--sp-6)}
+.mix h3{margin-bottom:var(--sp-4)}
+.mix__cols{display:grid;gap:var(--sp-4)}
+.mix h4{font-size:.8125rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brown);padding-bottom:.6rem;border-bottom:2px solid var(--ink)}
+.rows li{display:flex;align-items:baseline;justify-content:space-between;gap:var(--sp-2);padding-block:1rem;border-bottom:1px solid rgba(23,23,23,.16)}
+.rows b{display:block;font-size:1.15rem}
+.rows small{display:block;color:var(--brown);font-size:.95rem;line-height:1.4}
+.rows strong{font-family:var(--display);font-weight:400;font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-.02em}
+@media (min-width:860px){
+  .plans{grid-template-columns:1fr 1fr;gap:0}
+  .plan{padding-inline:var(--sp-4)}
+  .plan:first-child{padding-left:0;border-right:1px solid rgba(23,23,23,.16)}
+  .plan:last-child{padding-right:0}
+  .mix__cols{grid-template-columns:1fr 1fr;gap:var(--sp-5)}
 }
 
-/* ---------- 07 faqs ---------- */
+/* ---------- discovery ---------- */
+.call{background:var(--orange);color:var(--ink);padding-block:var(--sp-6)}
+.call h2{font-size:clamp(2.6rem,9vw,8rem);max-width:12ch}
+.call__row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--sp-3);margin-top:var(--sp-4)}
+.call__row p{font-family:var(--display);font-size:clamp(1.2rem,2.4vw,1.8rem);line-height:1.2;max-width:24ch}
+
+/* ---------- artists ---------- */
+.artists{padding-block:var(--sp-5);min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);align-content:center;overflow:hidden}
+.artists__head{display:grid;gap:var(--sp-3);margin-bottom:var(--sp-4)}
+.artists__head h2{max-width:15ch;font-size:clamp(2rem,5vw,4rem)}
+.artists__head .btn{margin-top:var(--sp-2)}
+.shelf{overflow-x:auto;scroll-snap-type:x mandatory;padding:0 var(--gutter) var(--sp-2);scrollbar-color:var(--orange) var(--ink-2)}
+.shelf__track{display:flex;gap:var(--sp-3);width:max-content}
+.artist{flex:0 0 auto;width:min(64vw,260px);scroll-snap-align:start}
+.artist .ph{border-radius:20px;overflow:hidden;background:var(--ink-2)}
+.artist img{width:100%;aspect-ratio:15/16;object-fit:cover;transition:transform .8s var(--out)}
+.artist:hover img,.artist:focus-within img{transform:scale(1.05)}
+.artist h3{margin-top:.8rem;font-family:var(--display);font-weight:400;font-size:1.2rem;line-height:1.1;letter-spacing:-.01em}
+.shelf.is-pinned{overflow:visible;scroll-snap-type:none}
+@media (min-width:1000px){.artists__head{grid-template-columns:6fr 5fr;align-items:end}.artist{width:280px}}
+
+/* ---------- about ---------- */
+.about{padding-block:var(--sp-6);background:var(--cream-2)}
+.about__grid{display:grid;gap:var(--sp-4)}
+.about__copy{display:grid;gap:var(--sp-2);max-width:60ch;align-content:start}
+.about__copy h2{margin-bottom:var(--sp-1)}
+.stats{display:flex;flex-wrap:wrap;gap:var(--sp-3) var(--sp-5);margin-block:var(--sp-2)}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(3.2rem,7vw,5rem);line-height:1;letter-spacing:-.04em;color:var(--orange)}
+.stat>span{display:block;max-width:20ch;font-size:.95rem;line-height:1.4;font-weight:600;color:var(--brown)}
+.about .btn{justify-self:start}
+@media (min-width:900px){.about__grid{grid-template-columns:5fr 6fr;gap:var(--sp-5);align-items:center}}
+
+/* ---------- band image ---------- */
+.band{padding-block:var(--sp-6) 0}
+.band img{width:100%;aspect-ratio:21/9;object-fit:cover;border-radius:var(--r)}
+@media (max-width:700px){.band img{aspect-ratio:4/3}}
+
+/* ---------- faqs ---------- */
 .faq{padding-block:var(--sp-6)}
-.faq__head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:var(--sp-2);margin-bottom:var(--sp-4)}
-.take{font-family:var(--display);font-size:clamp(1.6rem,3vw,2.2rem);color:var(--orange);letter-spacing:.02em;font-variant-numeric:tabular-nums}
-.faq__list{border-top:2px solid var(--cream)}
-.q{border-bottom:1px solid rgba(254,246,235,.25)}
-.q summary{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:var(--sp-2);min-height:64px;padding:var(--sp-2) 0;cursor:pointer;list-style:none;font-weight:700;line-height:1.35}
+.faq h2{margin-bottom:var(--sp-4)}
+.faq__list{border-top:2px solid var(--ink);max-width:900px}
+.q{border-bottom:1px solid rgba(23,23,23,.16)}
+.q summary{display:grid;grid-template-columns:1fr auto;align-items:center;gap:var(--sp-2);min-height:68px;padding:var(--sp-2) 0;cursor:pointer;list-style:none;font-size:1.15rem;font-weight:600;line-height:1.35}
 .q summary::-webkit-details-marker{display:none}
 .q summary:hover{color:var(--orange)}
-.q .tk{font-family:var(--display);font-size:1.5rem;letter-spacing:.02em;color:var(--grey);min-width:3.4rem}
-.q .pl{position:relative;width:20px;height:20px}
-.q .pl::before,.q .pl::after{content:"";position:absolute;left:0;right:0;top:9px;height:2px;background:currentColor;transition:transform .3s var(--out)}
+.q .pl{position:relative;width:22px;height:22px}
+.q .pl::before,.q .pl::after{content:"";position:absolute;left:0;right:0;top:10px;height:2.5px;border-radius:2px;background:currentColor;transition:transform .35s var(--out)}
 .q .pl::after{transform:rotate(90deg)}
 .q[open] .pl::after{transform:rotate(0)}
-.q[open] .tk{color:var(--orange)}
-.q__a{max-width:68ch;padding:0 0 var(--sp-3) calc(3.4rem + var(--sp-2));color:var(--sand)}
-@media (max-width:600px){.q__a{padding-left:0}}
+.q__a{max-width:66ch;padding:0 0 var(--sp-3);color:var(--brown)}
+.q__a a{color:var(--ink)}
 
-/* ---------- 08 contact ---------- */
-.contact{padding-block:var(--sp-6);overflow:hidden;background:var(--ink);color:var(--cream)}
-.contact__bg,.contact__bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.contact::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(23,23,23,.88),rgba(23,23,23,.72) 50%,rgba(23,23,23,.92)),radial-gradient(50% 60% at 85% 20%,rgba(245,60,23,.35),transparent 70%)}
-.contact .wrap{position:relative;z-index:2}
-.contact__grid{display:grid;gap:var(--sp-4)}
-.contact h2{font-size:clamp(4rem,12vw,10rem)}
+/* ---------- contact ---------- */
+.contact{padding-block:var(--sp-6)}
+.contact__grid{display:grid;gap:var(--sp-5)}
+.contact h2{font-size:clamp(2.6rem,9vw,7.5rem)}
 .contact__intro{display:grid;gap:var(--sp-2);align-content:start}
-.contact__intro p{max-width:40ch;color:var(--sand)}
-.direct{display:grid;gap:.3rem;margin-top:var(--sp-1);font-weight:700}
+.contact__intro p{max-width:38ch;color:var(--sand)}
+.direct{display:grid;gap:.2rem;margin-top:var(--sp-2);font-weight:600}
 .direct a{display:inline-flex;align-items:center;min-height:44px;text-decoration:none;border-bottom:2px solid var(--orange);width:max-content}
 .direct a:hover{color:var(--orange)}
-.slip{background:var(--cream);color:var(--ink);padding:var(--sp-3);border:2px solid var(--ink);box-shadow:8px 8px 0 var(--orange)}
-.slip__top{display:flex;justify-content:space-between;gap:var(--sp-2);margin-bottom:var(--sp-2);font-size:.8125rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brown)}
-.fields{display:grid;gap:var(--sp-2)}
-.f{display:grid;gap:.3rem}
-.f label{font-size:.8125rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
-.f input,.f textarea{width:100%;min-height:48px;padding:.6rem .75rem;background:var(--cream-2);border:2px solid var(--ink);border-radius:0;transition:box-shadow .2s,background .2s}
+.fields{display:grid;gap:var(--sp-3)}
+.f{display:grid;gap:.2rem}
+.f label{font-size:.8125rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--grey)}
+.f input,.f textarea{width:100%;min-height:52px;padding:.7rem 0;background:transparent;border:0;border-bottom:2px solid rgba(254,246,235,.35);border-radius:0;font-size:1.15rem;color:var(--cream);transition:border-color .2s}
 .f textarea{min-height:140px;resize:vertical}
-.f input:hover,.f textarea:hover{background:#fff}
-.f input:focus-visible,.f textarea:focus-visible{outline:3px solid var(--orange);outline-offset:0;background:#fff}
-.f .err{display:none;font-size:.85rem;font-weight:700;color:#B3220A}
-.f.bad input,.f.bad textarea{border-color:#B3220A;border-width:3px}
+.f input:hover,.f textarea:hover{border-bottom-color:var(--cream)}
+.f input:focus-visible,.f textarea:focus-visible{outline:0;border-bottom-color:var(--orange)}
+.f .err{display:none;font-size:.9rem;font-weight:600;color:#FF9B88}
+.f.bad input,.f.bad textarea{border-bottom-color:#FF9B88}
 .f.bad .err{display:block}
-.pkg{display:none;align-items:center;justify-content:space-between;gap:var(--sp-2);padding:.6rem .8rem;background:var(--sand);border:2px dashed var(--ink);font-size:.9rem;font-weight:700}
+.pkg{display:none;align-items:center;justify-content:space-between;gap:var(--sp-2);padding:.4rem .4rem .4rem 1.1rem;border-radius:999px;box-shadow:inset 0 0 0 2px rgba(254,246,235,.35);font-size:.95rem;font-weight:600}
 .pkg.on{display:flex}
-.pkg button{background:none;border:0;padding:.4rem;min-height:44px;font-weight:700;text-decoration:underline;cursor:pointer}
+.pkg button{background:none;border:0;padding:.4rem .8rem;min-height:44px;font-weight:700;text-decoration:underline;cursor:pointer}
 .pkg button:hover{color:var(--orange)}
-.two{display:grid;gap:var(--sp-2)}
+.two{display:grid;gap:var(--sp-3)}
 @media (min-width:520px){.two{grid-template-columns:1fr 1fr}}
-.form-msg{min-height:1.5em;font-weight:700}
-.form-msg.err{color:#B3220A}
-.done{display:none;padding:var(--sp-3) 0;text-align:left}
-.done h3{font-size:clamp(2.6rem,6vw,4rem);color:var(--orange);margin-bottom:var(--sp-1)}
+.form-msg{min-height:1.5em;font-weight:600}
+.form-msg.err{color:#FF9B88}
+.done{display:none}
+.done h3{font-family:var(--display);font-weight:400;font-size:clamp(2rem,5vw,3.4rem);line-height:1;color:var(--orange);margin-bottom:var(--sp-2)}
+.done p{color:var(--sand)}
 .slip.is-done form{display:none}.slip.is-done .done{display:block}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.contact .btn{justify-self:start}
 @media (min-width:900px){.contact__grid{grid-template-columns:6fr 5fr;gap:var(--sp-5);align-items:start}}
 
 /* ---------- footer ---------- */
-.foot{background:var(--ink-3);color:var(--cream);padding-block:var(--sp-5) var(--sp-3);border-top:4px solid var(--orange)}
+.foot{background:var(--ink);color:var(--cream);padding-block:var(--sp-4) var(--sp-3);border-top:1px solid rgba(254,246,235,.16)}
 .foot__grid{display:grid;gap:var(--sp-3)}
-.foot h2{font-family:var(--display);font-weight:400;font-size:clamp(3rem,8vw,6rem);letter-spacing:-.03em;line-height:.9;text-transform:uppercase}
-.foot h3{font-size:.8125rem;font-weight:700;letter-spacing:.14em;color:var(--grey);margin-bottom:.4rem}
+.foot h2{font-family:var(--display);font-weight:400;font-size:clamp(1.8rem,5vw,3.4rem);letter-spacing:-.03em;line-height:1;text-transform:uppercase}
+.foot h3{font-size:.8125rem;font-weight:700;letter-spacing:.16em;color:var(--grey);margin-bottom:.4rem}
 .foot address{font-style:normal}
 .foot a{text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
 .foot a:hover{color:var(--orange)}
-.foot__legal{margin-top:var(--sp-4);padding-top:var(--sp-2);border-top:1px solid rgba(254,246,235,.2);font-size:.85rem;color:var(--grey)}
+.foot__legal{margin-top:var(--sp-4);font-size:.85rem;color:var(--grey)}
 @media (min-width:800px){.foot__grid{grid-template-columns:2fr 1fr 1fr 1fr}}
 
 /* ---------- player ---------- */
-.player{position:fixed;z-index:60;left:var(--gutter);right:var(--gutter);bottom:var(--sp-2);max-width:560px;margin-left:auto;background:var(--ink);border:2px solid var(--cream);box-shadow:0 20px 40px -10px rgba(0,0,0,.6);transform:translateY(130%);transition:transform .5s var(--out);visibility:hidden}
+.player{position:fixed;z-index:60;left:var(--gutter);right:var(--gutter);bottom:var(--sp-2);max-width:520px;margin-left:auto;background:var(--ink);border-radius:20px;overflow:hidden;box-shadow:0 24px 50px -12px rgba(0,0,0,.55);transform:translateY(130%);transition:transform .5s var(--out);visibility:hidden}
 .player.open{transform:none;visibility:visible}
-.player__bar{display:flex;align-items:center;justify-content:space-between;padding:.2rem .4rem .2rem .9rem;color:var(--cream);font-size:.8125rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
-.player__bar button{min-height:44px;min-width:44px;background:none;border:0;color:inherit;font-size:1.4rem;cursor:pointer}
+.player__bar{display:flex;align-items:center;justify-content:space-between;padding:.2rem .4rem .2rem 1.1rem;color:var(--cream);font-size:.8125rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.player__bar button{min-height:44px;min-width:44px;background:none;border:0;color:inherit;font-size:1.5rem;cursor:pointer}
 .player__bar button:hover{color:var(--orange)}
 .player iframe{display:block;width:100%;height:152px;border:0}
 
@@ -406,11 +344,8 @@ html.rm .pause{display:none}
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="bar">
-  <div class="progress" aria-hidden="true"></div>
   <div class="wrap bar__in">
-    <a class="logo" href="#top" aria-label="LevProductions, back to top">LEVPRODUCTIONS</a>
-    <div class="tc" aria-hidden="true"><span class="rec-dot"></span><span id="tc">00:00:00</span></div>
-    <button class="btn listen" type="button" data-play aria-controls="player">&#9654; Listen</button>
+    <a class="logo" href="#top" aria-label="LevProductions, back to top">LevProductions</a>
     <nav class="nav" id="nav" aria-label="Main">
       <a href="#artists">Artists</a>
       <a href="#about">About</a>
@@ -426,109 +361,92 @@ html.rm .pause{display:none}
 <main id="main">
 
 <section class="hero" id="top" aria-labelledby="h-hero">
-  <picture class="hero__img">
-    <source type="image/avif" srcset="img/hero-800.avif 800w, img/hero-1600.avif 1600w" sizes="100vw">
-    <source type="image/webp" srcset="img/hero-800.webp 800w, img/hero-1600.webp 1600w" sizes="100vw">
-    <img src="img/hero-1600.webp" width="1600" height="920" alt="LevProductions recording studio in Byron Bay, with studio monitors, keyboard and guitar" fetchpriority="high">
-  </picture>
-  <div class="reels" aria-hidden="true">
-    <svg class="reel" data-reel viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="50" cy="50" r="12" fill="#F53C17"/><g fill="none" stroke="currentColor" stroke-width="3"><path d="M50 38V10M60.4 56l24.3 14M39.6 56L15.3 70"/></g><circle cx="50" cy="50" r="4" fill="#171717"/></svg>
-    <svg class="reel" data-reel viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="50" cy="50" r="12" fill="#F53C17"/><g fill="none" stroke="currentColor" stroke-width="3"><path d="M50 38V10M60.4 56l24.3 14M39.6 56L15.3 70"/></g><circle cx="50" cy="50" r="4" fill="#171717"/></svg>
-  </div>
-  <div class="wrap hero__in">
-    <h1 class="display" id="h-hero"><span>Write,</span><span>Record.</span><span class="rel">Release.</span></h1>
+  <div class="wrap">
+    <h1 class="poster" id="h-hero"><span>Write,</span><span>Record.</span><span class="rel">Release.</span></h1>
     <div class="hero__row">
       <div class="hero__copy">
         <p class="tag">A place where artists grow.</p>
         <p>Professional productions, song writing, mixing &amp; mastering.</p>
       </div>
-      <div class="cta">
-        <svg class="scribble" viewBox="0 0 300 90" preserveAspectRatio="none" aria-hidden="true"><path d="M14 50C6 16 122 4 204 8S298 30 289 56 192 88 110 82 4 68 22 36"/></svg>
-        <a class="btn" href="#contact">Book a free discovery call</a>
-      </div>
+      <a class="btn" href="#contact">Book a free discovery call</a>
     </div>
+    <picture class="hero__photo">
+      <source type="image/avif" srcset="img/hero-800.avif 800w, img/hero-1600.avif 1600w" sizes="(min-width:1340px) 1280px, 90vw">
+      <source type="image/webp" srcset="img/hero-800.webp 800w, img/hero-1600.webp 1600w" sizes="(min-width:1340px) 1280px, 90vw">
+      <img src="img/hero-1600.webp" width="1600" height="920" alt="LevProductions recording studio in Byron Bay, with studio monitors, keyboard and guitar" fetchpriority="high">
+    </picture>
   </div>
 </section>
 
-<section class="job sheet" id="job" aria-labelledby="h-job">
+<section class="job" id="job" aria-labelledby="h-job">
   <div class="wrap">
-    <div class="strip" data-reveal><span class="n">02</span><span>My job</span><span class="sp"></span><span class="rec-dot" aria-hidden="true"></span></div>
+    <p class="label" data-reveal>My Job?</p>
+    <h2 class="poster" id="h-job" data-reveal>Bring your songs &amp; ideas to life</h2>
     <div class="job__grid">
-      <div class="job__head" data-reveal>
-        <p class="eyebrow">My Job?</p>
-        <h2 class="display" id="h-job"><span>Bring your</span><span>songs &amp; ideas</span><span>to life</span></h2>
-      </div>
+      <figure class="round" data-reveal>
+        <picture>
+          <source type="image/avif" srcset="img/studio-1-440.avif 440w, img/studio-1-660.avif 660w" sizes="(min-width:900px) 40vw, 90vw">
+          <source type="image/webp" srcset="img/studio-1-440.webp 440w, img/studio-1-660.webp 660w" sizes="(min-width:900px) 40vw, 90vw">
+          <img src="img/studio-1-660.webp" width="660" height="900" loading="lazy" decoding="async" alt="Ari Levy smiling in his Byron Bay studio, seated at the desk in front of his monitors and keyboard">
+        </picture>
+      </figure>
       <div class="job__copy" data-reveal style="--d:1">
         <p>You might have a voice recording, half-finished ideas scribbled down in a notebook, maybe some home recordings that you’re vibing to, or just a melody stuck in your head. If you’re looking for a place to turn these ideas into a reality, to experiment, to start (or deepen) your creative journey, LevProductions is the place for you.</p>
         <p>Hi, I’m Ari - a professional music producer, songwriter and multi-instrumentalist based in Byron Bay. My passion is helping artists find their sound and capture their vision. LevProductions is more than just a studio, it’s a community. If you’re ready to join the fam hit me up and let’s chat.</p>
-        <a class="btn btn--ghost" href="#about">About Ari</a>
+        <a class="arrow" href="#about">About Ari <span aria-hidden="true">&rarr;</span></a>
       </div>
-      <figure class="photo job__photo" style="--r:2.5deg;--d:2" data-reveal>
-        <picture>
-          <source type="image/avif" srcset="img/studio-1-440.avif 440w, img/studio-1-660.avif 660w" sizes="(min-width:900px) 25vw, 70vw">
-          <source type="image/webp" srcset="img/studio-1-440.webp 440w, img/studio-1-660.webp 660w" sizes="(min-width:900px) 25vw, 70vw">
-          <img src="img/studio-1-660.webp" width="660" height="900" loading="lazy" decoding="async" alt="Ari Levy smiling in his Byron Bay studio, seated at the desk in front of his monitors and keyboard">
-        </picture>
-        <figcaption>Ari, in the room</figcaption>
-      </figure>
     </div>
-    <div class="wave" id="wave" aria-hidden="true"></div>
+    <div class="eq" id="eq" aria-hidden="true"></div>
   </div>
 </section>
 
 <section class="svc dark" id="services" aria-labelledby="h-svc">
-  <div class="wrap">
-    <div class="strip"><span class="n">03</span><span>Production</span><span class="sp"></span><span class="rec-dot" aria-hidden="true"></span></div>
-    <div class="svc__grid">
-      <div class="svc__head">
-        <h2 class="display" id="h-svc">Production service</h2>
-        <p class="lede">From raw demos to radio-ready tracks. Let’s craft a sound that’s uniquely yours.</p>
-      </div>
-      <div class="lanes" id="lanes">
-        <div class="playhead" aria-hidden="true"></div>
-        <article class="lane is-on" data-s="0" data-e=".62">
-          <div class="lane__label"><span class="no">[01]</span><h3 class="display">Production</h3><span class="vu" aria-hidden="true"><b></b><b></b><b></b><b></b></span></div>
-          <div class="lane__body"><div class="clip" style="--cs:0%;--cw:62%" aria-hidden="true"><div class="clip__cover"></div></div>
-          <p class="lane__desc">Your sound is in there. I'll help you find it. From the first idea to the final mix, every layer is built with intention.</p></div>
-        </article>
-        <article class="lane is-on" data-s=".16" data-e=".82">
-          <div class="lane__label"><span class="no">[02]</span><h3 class="display">Song writing</h3><span class="vu" aria-hidden="true"><b></b><b></b><b></b><b></b></span></div>
-          <div class="lane__body"><div class="clip" style="--cs:16%;--cw:66%" aria-hidden="true"><div class="clip__cover"></div></div>
-          <p class="lane__desc">Sometimes a song just needs the right person in the room. Bring a feeling, a hook, a half-finished idea. We'll shape it into something you love singing.</p></div>
-        </article>
-        <article class="lane is-on" data-s=".34" data-e="1">
-          <div class="lane__label"><span class="no">[03]</span><h3 class="display">Mixing &amp; mastering</h3><span class="vu" aria-hidden="true"><b></b><b></b><b></b><b></b></span></div>
-          <div class="lane__body"><div class="clip" style="--cs:34%;--cw:66%" aria-hidden="true"><div class="clip__cover"></div></div>
-          <p class="lane__desc">Give your music dimension, power, and clarity. I deliver warm, punchy mixes and dynamic masters that sound perfect on any playback system.</p></div>
-        </article>
-        <article class="lane is-on" data-s=".5" data-e=".94">
-          <div class="lane__label"><span class="no">[04]</span><h3 class="display">Editing</h3><span class="vu" aria-hidden="true"><b></b><b></b><b></b><b></b></span></div>
-          <div class="lane__body"><div class="clip" style="--cs:50%;--cw:44%" aria-hidden="true"><div class="clip__cover"></div></div>
-          <p class="lane__desc">The details are where a good recording becomes a great one. I'll tighten every take, clean every track and make sure what you hear back feels exactly the way it should.</p></div>
-        </article>
-      </div>
+  <div class="wrap svc__grid">
+    <div class="svc__head">
+      <p class="label">Production</p>
+      <h2 class="poster" id="h-svc" style="margin-top:var(--sp-1)">Production service</h2>
+      <p class="lede">From raw demos to radio-ready tracks. Let’s craft a sound that’s uniquely yours.</p>
+    </div>
+    <div class="lanes" id="lanes">
+      <div class="playhead" aria-hidden="true"></div>
+      <article class="lane is-on" data-s="0" data-e=".62">
+        <div class="lane__label"><span class="no">[01]</span><h3>Production</h3></div>
+        <div class="lane__body"><div class="clip" style="--cs:0%;--cw:62%" aria-hidden="true"><div class="clip__cover"></div></div>
+        <p class="lane__desc">Your sound is in there. I'll help you find it. From the first idea to the final mix, every layer is built with intention.</p></div>
+      </article>
+      <article class="lane is-on" data-s=".16" data-e=".82">
+        <div class="lane__label"><span class="no">[02]</span><h3>Song writing</h3></div>
+        <div class="lane__body"><div class="clip" style="--cs:16%;--cw:66%" aria-hidden="true"><div class="clip__cover"></div></div>
+        <p class="lane__desc">Sometimes a song just needs the right person in the room. Bring a feeling, a hook, a half-finished idea. We'll shape it into something you love singing.</p></div>
+      </article>
+      <article class="lane is-on" data-s=".34" data-e="1">
+        <div class="lane__label"><span class="no">[03]</span><h3>Mixing &amp; mastering</h3></div>
+        <div class="lane__body"><div class="clip" style="--cs:34%;--cw:66%" aria-hidden="true"><div class="clip__cover"></div></div>
+        <p class="lane__desc">Give your music dimension, power, and clarity. I deliver warm, punchy mixes and dynamic masters that sound perfect on any playback system.</p></div>
+      </article>
+      <article class="lane is-on" data-s=".5" data-e=".94">
+        <div class="lane__label"><span class="no">[04]</span><h3>Editing</h3></div>
+        <div class="lane__body"><div class="clip" style="--cs:50%;--cw:44%" aria-hidden="true"><div class="clip__cover"></div></div>
+        <p class="lane__desc">The details are where a good recording becomes a great one. I'll tighten every take, clean every track and make sure what you hear back feels exactly the way it should.</p></div>
+      </article>
     </div>
   </div>
 </section>
 
-<section class="pricing sheet" id="pricing" aria-labelledby="h-pricing">
+<section class="pricing" id="pricing" aria-labelledby="h-pricing">
   <div class="wrap">
-    <div class="strip" data-reveal><span class="n">04</span><span>Pricing</span><span class="sp"></span><span class="rec-dot" aria-hidden="true"></span></div>
     <div class="pricing__head" data-reveal>
-      <h2 class="display" id="h-pricing">Pricing plans</h2>
+      <p class="label">Pricing</p>
+      <h2 class="poster" id="h-pricing">Pricing plans</h2>
       <p class="lede">Professional production, transparent pricing, no hidden fees.</p>
     </div>
     <div class="plans">
       <article class="plan" data-reveal>
-        <ul class="plan__tags"><li>Full production</li><li>Stripped back</li><li>EP &amp; album</li><li>Pre-written song</li></ul>
+        <p class="plan__tags">Full production &middot; Stripped back &middot; EP &amp; album &middot; Pre-written song</p>
         <h3 class="plan__sub">Your song, captured</h3>
         <p>You come in with your song ready — chords, lyrics and melody in hand. We focus on bringing it to life in the studio.</p>
-        <div><span class="price"><svg viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden="true"><path d="M10 52C4 16 80 6 130 8s66 22 60 46-70 38-124 34S6 70 20 38"/></svg>$2,400</span></div>
-        <div>
-          <p class="plan__meta">Up to 5 full sessions</p>
-          <div class="boxes" aria-hidden="true"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i></div>
-          <p class="plan__meta"><span data-count="30">30</span> hrs total</p>
-        </div>
+        <p class="price">$2,400</p>
+        <p class="plan__meta">Up to 5 full sessions &middot; <span data-count="30">30</span> hrs total</p>
         <ul class="feat">
           <li>Full arrangement &amp; music production</li><li>Sound design &amp; sonic textures</li><li>Live guitar, bass &amp; keys</li><li>Vocal recording &amp; comping</li><li>Session musician coordination available</li><li>Rough reference mix included</li><li>Professional mix &amp; master - add on for a release-ready finish</li>
         </ul>
@@ -536,15 +454,11 @@ html.rm .pause{display:none}
         <a class="btn" href="#contact" data-package="Full Production">Get Started</a>
       </article>
       <article class="plan" data-reveal style="--d:1">
-        <ul class="plan__tags"><li>Co-Written Song</li></ul>
+        <p class="plan__tags">Co-Written Song</p>
         <h3 class="plan__sub">Built from scratch together</h3>
         <p>You come in with an idea, a feeling or a direction — and we build the song together from the ground up.</p>
-        <div><span class="price"><svg viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden="true"><path d="M10 52C4 16 80 6 130 8s66 22 60 46-70 38-124 34S6 70 20 38"/></svg>$3,360</span></div>
-        <div>
-          <p class="plan__meta">Up to 7 full sessions</p>
-          <div class="boxes" aria-hidden="true"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i></div>
-          <p class="plan__meta"><span data-count="42">42</span> hrs total</p>
-        </div>
+        <p class="price">$3,360</p>
+        <p class="plan__meta">Up to 7 full sessions &middot; <span data-count="42">42</span> hrs total</p>
         <ul class="feat">
           <li>Writing lyrics &amp; melody together</li><li>Finding the chords &amp; main riffs for the song</li><li>Arranging the structure from scratch</li><li>Full arrangement &amp; music production</li><li>Sound design &amp; sonic textures</li><li>Live guitar, bass &amp; keys</li><li>Vocal recording &amp; comping</li><li>Session musician coordination available</li><li>Rough reference mix included</li><li>Professional mix &amp; master - add on for a release-ready finish</li>
         </ul>
@@ -554,143 +468,134 @@ html.rm .pause{display:none}
     </div>
 
     <div class="mix" data-reveal>
-      <h3 class="display">Mix &amp; Master</h3>
-      <div class="faders">
-        <div class="fader" style="--lv:50"><span class="grp">Mixing</span><div class="track"><span class="knob"></span></div><div><h4>In house mix</h4><p>Mixed by LEVPRODUCTIONS</p><p class="amt">$600</p></div></div>
-        <div class="fader" style="--lv:100"><span class="grp">Mixing</span><div class="track"><span class="knob"></span></div><div><h4>Outsourced Mix</h4><p>Premium external engineer</p><p class="amt">$1,200</p></div></div>
-        <div class="fader" style="--lv:9"><span class="grp">Mastering</span><div class="track"><span class="knob"></span></div><div><h4>In-House Master</h4><p>Release ready for all platforms</p><p class="amt">$110</p></div></div>
-        <div class="fader" style="--lv:13"><span class="grp">Mastering</span><div class="track"><span class="knob"></span></div><div><h4>Outsourced Master</h4><p>Premium external engineer</p><p class="amt">$160</p></div></div>
+      <h3 class="poster" style="font-size:clamp(1.8rem,4vw,3rem)">Mix &amp; Master</h3>
+      <div class="mix__cols">
+        <div>
+          <h4>Mixing</h4>
+          <ul class="rows">
+            <li><span><b>In house mix</b><small>Mixed by LEVPRODUCTIONS</small></span><strong>$600</strong></li>
+            <li><span><b>Outsourced Mix</b><small>Premium external engineer</small></span><strong>$1,200</strong></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Mastering</h4>
+          <ul class="rows">
+            <li><span><b>In-House Master</b><small>Release ready for all platforms</small></span><strong>$110</strong></li>
+            <li><span><b>Outsourced Master</b><small>Premium external engineer</small></span><strong>$160</strong></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="band on-orange" aria-labelledby="h-band">
-  <h2 class="sr" id="h-band">Book a 15min Discovery call.</h2>
-  <div class="marquee" id="marquee" aria-hidden="true">
-    <span>Book a 15min Discovery call.</span><span>Book a 15min Discovery call.</span><span>Book a 15min Discovery call.</span><span>Book a 15min Discovery call.</span>
-  </div>
-  <div class="wrap band__row">
-    <p>Custom packages available for EPs and Albums.</p>
-    <div class="band__btns"><button class="btn pause" type="button" id="pause" aria-pressed="false" aria-controls="marquee">Pause ticker</button><a class="btn" href="#contact">Get Started Now</a></div>
+<section class="call on-orange" aria-labelledby="h-call">
+  <div class="wrap">
+    <h2 class="poster" id="h-call" data-reveal>Book a 15min Discovery call.</h2>
+    <div class="call__row" data-reveal style="--d:1">
+      <p>Custom packages available for EPs and Albums.</p>
+      <a class="btn btn--ink" href="#contact">Get Started Now</a>
+    </div>
   </div>
 </section>
 
 <section class="artists dark" id="artists" aria-labelledby="h-art">
   <div class="wrap">
-    <div class="strip"><span class="n">05</span><span>Artists</span><span class="sp"></span><span class="rec-dot" aria-hidden="true"></span></div>
     <div class="artists__head">
-      <h2 class="display" id="h-art">Artists Who’ve Been Through The Door.</h2>
+      <h2 class="poster" id="h-art">Artists Who’ve Been Through The Door.</h2>
       <div>
         <p class="lede">Each artist I collaborate with brings something different to the table. No two projects are ever the same, and that’s what makes the process so exciting. It’s been a privilege to witness their creative growth and uniqueness. Have a listen to get a real sense of my work and sound.</p>
-        <p style="margin-top:var(--sp-2)"><button class="btn btn--cream" type="button" data-play aria-controls="player">&#9654; Have a listen</button></p>
+        <button class="btn" type="button" data-play aria-controls="player">&#9654;&nbsp; Have a listen</button>
       </div>
     </div>
   </div>
   <div class="shelf" id="shelf" tabindex="0" aria-label="Artists produced at LevProductions, scroll sideways">
     <ul class="shelf__track" id="track">
-      <li class="tape" style="--r:-1.5deg"><div class="thumb"><picture><source type="image/avif" srcset="img/coast-and-ocean-360.avif"><img src="img/coast-and-ocean-360.webp" width="360" height="386" loading="lazy" decoding="async" alt="Coast and Ocean, artist produced at LevProductions"></picture></div><div class="tape__label"><h3>Coast and ocean</h3><span>[01]</span></div></li>
-      <li class="tape" style="--r:1deg"><div class="thumb"><picture><source type="image/avif" srcset="img/resonant-hand-300.avif"><img src="img/resonant-hand-300.webp" width="300" height="321" loading="lazy" decoding="async" alt="Resonant Hand, artist produced at LevProductions"></picture></div><div class="tape__label"><h3>Resonant hand</h3><span>[02]</span></div></li>
-      <li class="tape" style="--r:-.8deg"><div class="thumb"><picture><source type="image/avif" srcset="img/fin-wheatley-450.avif"><img src="img/fin-wheatley-450.webp" width="450" height="482" loading="lazy" decoding="async" alt="Fin Wheatley, artist produced at LevProductions"></picture></div><div class="tape__label"><h3>Fin wheatley</h3><span>[03]</span></div></li>
-      <li class="tape" style="--r:1.6deg"><div class="thumb"><picture><source type="image/avif" srcset="img/anna-gozlan-300.avif"><img src="img/anna-gozlan-300.webp" width="300" height="321" loading="lazy" decoding="async" alt="Anna Gozlan, artist produced at LevProductions"></picture></div><div class="tape__label"><h3>Anna gozlan</h3><span>[04]</span></div></li>
-      <li class="tape" style="--r:-1.2deg"><div class="thumb"><picture><source type="image/avif" srcset="img/nuraini-390.avif"><img src="img/nuraini-390.webp" width="390" height="419" loading="lazy" decoding="async" alt="Nuraini, artist produced at LevProductions"></picture></div><div class="tape__label"><h3>Nuraini</h3><span>[05]</span></div></li>
-      <li class="tape" style="--r:.9deg"><div class="thumb"><picture><source type="image/avif" srcset="img/creme-fraiche-480.avif"><img src="img/creme-fraiche-480.webp" width="480" height="515" loading="lazy" decoding="async" alt="Creme Fraiche, artist produced at LevProductions"></picture></div><div class="tape__label"><h3>Creme fraiche</h3><span>[06]</span></div></li>
-      <li class="tape" style="--r:-1.4deg"><div class="thumb"><picture><source type="image/avif" srcset="img/miggy-360.avif"><img src="img/miggy-360.webp" width="360" height="386" loading="lazy" decoding="async" alt="Miggy, artist produced at LevProductions"></picture></div><div class="tape__label"><h3>Miggy</h3><span>[07]</span></div></li>
-      <li class="tape" style="--r:1.1deg"><div class="thumb"><picture><source type="image/avif" srcset="img/freeds-300.avif"><img src="img/freeds-300.webp" width="300" height="321" loading="lazy" decoding="async" alt="Freeds, artist produced at LevProductions"></picture></div><div class="tape__label"><h3>Freeds</h3><span>[08]</span></div></li>
+      <li class="artist"><div class="ph"><picture><source type="image/avif" srcset="img/coast-and-ocean-360.avif"><img src="img/coast-and-ocean-360.webp" width="360" height="386" loading="lazy" decoding="async" alt="Coast and Ocean, artist produced at LevProductions"></picture></div><h3>Coast and ocean</h3></li>
+      <li class="artist"><div class="ph"><picture><source type="image/avif" srcset="img/resonant-hand-300.avif"><img src="img/resonant-hand-300.webp" width="300" height="321" loading="lazy" decoding="async" alt="Resonant Hand, artist produced at LevProductions"></picture></div><h3>Resonant hand</h3></li>
+      <li class="artist"><div class="ph"><picture><source type="image/avif" srcset="img/fin-wheatley-450.avif"><img src="img/fin-wheatley-450.webp" width="450" height="482" loading="lazy" decoding="async" alt="Fin Wheatley, artist produced at LevProductions"></picture></div><h3>Fin wheatley</h3></li>
+      <li class="artist"><div class="ph"><picture><source type="image/avif" srcset="img/anna-gozlan-300.avif"><img src="img/anna-gozlan-300.webp" width="300" height="321" loading="lazy" decoding="async" alt="Anna Gozlan, artist produced at LevProductions"></picture></div><h3>Anna gozlan</h3></li>
+      <li class="artist"><div class="ph"><picture><source type="image/avif" srcset="img/nuraini-390.avif"><img src="img/nuraini-390.webp" width="390" height="419" loading="lazy" decoding="async" alt="Nuraini, artist produced at LevProductions"></picture></div><h3>Nuraini</h3></li>
+      <li class="artist"><div class="ph"><picture><source type="image/avif" srcset="img/creme-fraiche-480.avif"><img src="img/creme-fraiche-480.webp" width="480" height="515" loading="lazy" decoding="async" alt="Creme Fraiche, artist produced at LevProductions"></picture></div><h3>Creme fraiche</h3></li>
+      <li class="artist"><div class="ph"><picture><source type="image/avif" srcset="img/miggy-360.avif"><img src="img/miggy-360.webp" width="360" height="386" loading="lazy" decoding="async" alt="Miggy, artist produced at LevProductions"></picture></div><h3>Miggy</h3></li>
+      <li class="artist"><div class="ph"><picture><source type="image/avif" srcset="img/freeds-300.avif"><img src="img/freeds-300.webp" width="300" height="321" loading="lazy" decoding="async" alt="Freeds, artist produced at LevProductions"></picture></div><h3>Freeds</h3></li>
     </ul>
   </div>
 </section>
 
-<section class="about sheet" id="about" aria-labelledby="h-about">
-  <div class="wrap">
-    <div class="strip" data-reveal><span class="n">06</span><span>About Ari</span><span class="sp"></span><span class="rec-dot" aria-hidden="true"></span></div>
-    <div class="about__grid">
-      <div class="about__photos" data-reveal>
-        <figure class="photo main" style="--r:-2deg">
-          <picture>
-            <source type="image/avif" srcset="img/ari-480.avif 480w, img/ari-900.avif 900w" sizes="(min-width:900px) 30vw, 80vw">
-            <source type="image/webp" srcset="img/ari-480.webp 480w, img/ari-900.webp 900w" sizes="(min-width:900px) 30vw, 80vw">
-            <img src="img/ari-900.webp" width="900" height="1320" loading="lazy" decoding="async" alt="Ari Levy, music producer at LevProductions in Byron Bay, smiling over his shoulder at the studio desk">
-          </picture>
-          <figcaption>Ari Levy</figcaption>
-        </figure>
-        <figure class="photo small s1" style="--r:4deg" aria-hidden="true">
-          <picture><source type="image/avif" srcset="img/studio-2-440.avif"><img src="img/studio-2-440.webp" width="440" height="600" loading="lazy" decoding="async" alt=""></picture>
-        </figure>
-        <figure class="photo small s2" style="--r:-4deg" aria-hidden="true">
-          <picture><source type="image/avif" srcset="img/studio-3-440.avif"><img src="img/studio-3-440.webp" width="440" height="600" loading="lazy" decoding="async" alt=""></picture>
-        </figure>
+<section class="about" id="about" aria-labelledby="h-about">
+  <div class="wrap about__grid">
+    <figure class="round" data-reveal>
+      <picture>
+        <source type="image/avif" srcset="img/ari-480.avif 480w, img/ari-900.avif 900w" sizes="(min-width:900px) 40vw, 90vw">
+        <source type="image/webp" srcset="img/ari-480.webp 480w, img/ari-900.webp 900w" sizes="(min-width:900px) 40vw, 90vw">
+        <img src="img/ari-900.webp" width="900" height="1320" loading="lazy" decoding="async" alt="Ari Levy, music producer at LevProductions in Byron Bay, smiling over his shoulder at the studio desk">
+      </picture>
+    </figure>
+    <div class="about__copy" data-reveal style="--d:1">
+      <p class="label">About Ari</p>
+      <h2 class="poster" id="h-about">A little about me and my work</h2>
+      <p>I’m a producer, multi-instrumentalist, songwriter, sound engineer and performer currently located in the northern rivers. I have over 10 years of experience working alongside artists to bring their music to life. My approach is all about collaboration - shaping songs together, supporting melodies and lyrics, and making sure the final track feels true to your vision.</p>
+      <p>I started out as a performing musician, playing shows across Sydney and at festivals, before moving into a production role where I now focus on working closely with artists. Along the way, I also ran a hip hop record label for four years, gaining valuable industry experience and a deep understanding of how to support artists both creatively and professionally.</p>
+      <p>With a background spanning in hip hop, neo-soul, funk, jazz, RnB and pop, I bring versatility to every project. Whether it’s co-writing, arranging, or building a track from scratch, I see every project as a partnership - combining your creativity with my technical expertise in production and composition to create music that truly connects.</p>
+      <div class="stats">
+        <div class="stat"><b><span data-count="10">10</span>+</b><span>years working alongside artists</span></div>
+        <div class="stat"><b data-count="4">4</b><span>years running a hip hop record label</span></div>
       </div>
-      <div class="about__copy" data-reveal style="--d:1">
-        <h2 class="display" id="h-about">A little about me and my work</h2>
-        <p>I’m a producer, multi-instrumentalist, songwriter, sound engineer and performer currently located in the northern rivers. I have over 10 years of experience working alongside artists to bring their music to life. My approach is all about collaboration - shaping songs together, supporting melodies and lyrics, and making sure the final track feels true to your vision.</p>
-        <p>I started out as a performing musician, playing shows across Sydney and at festivals, before moving into a production role where I now focus on working closely with artists. Along the way, I also ran a hip hop record label for four years, gaining valuable industry experience and a deep understanding of how to support artists both creatively and professionally.</p>
-        <p>With a background spanning in hip hop, neo-soul, funk, jazz, RnB and pop, I bring versatility to every project. Whether it’s co-writing, arranging, or building a track from scratch, I see every project as a partnership - combining your creativity with my technical expertise in production and composition to create music that truly connects.</p>
-        <div class="stats">
-          <div class="stat"><b><span data-count="10">10</span>+</b><span>years working alongside artists</span></div>
-          <div class="stat"><b data-count="4">4</b><span>years running a hip hop record label</span></div>
-        </div>
-        <a class="btn" href="#contact">Book Now</a>
-      </div>
+      <a class="btn" href="#contact">Book Now</a>
     </div>
   </div>
 </section>
 
-<section class="faq dark" id="faqs" aria-labelledby="h-faq">
+<section class="faq" id="faqs" aria-labelledby="h-faq">
   <div class="wrap">
-    <div class="strip"><span class="n">07</span><span>FAQs</span><span class="sp"></span><span class="rec-dot" aria-hidden="true"></span></div>
-    <div class="faq__head">
-      <h2 class="display" id="h-faq">FAQs</h2>
-      <p class="take" aria-hidden="true">Take <span id="take">00</span> / 10</p>
+    <h2 class="poster" id="h-faq" data-reveal>FAQs</h2>
+    <div class="faq__list" data-reveal>
+      <details class="q"><summary><span>How much does it cost to work with a music producer in the Northern Rivers?</span><span class="pl" aria-hidden="true"></span></summary><div class="q__a"><p>Music production prices in the Northern Rivers vary depending on the project, but at LevProductions I offer flexible options for songwriting support, recording, mixing and mastering. Prices depend on session length and project scope, and you can book or request a quote directly through my website.</p></div></details>
+      <details class="q"><summary><span>What does a music producer do for artists?</span><span class="pl" aria-hidden="true"></span></summary><div class="q__a"><p>A music producer helps artists develop their sound by supporting songwriting, arrangement, recording, editing, mixing and overall creative direction. At LevProductions, I collaborate closely with artists to take songs from rough ideas or voice notes to polished, release-ready tracks.</p></div></details>
+      <details class="q"><summary><span>What genres do you work in?</span><span class="pl" aria-hidden="true"></span></summary><div class="q__a"><p>Pop, soul, R&amp;B, neo-soul, indie pop, lo-fi, funk, folk, groove-driven music — that's the world I live in. But honestly, genre is secondary. I'm song-driven first. Whatever the track needs to feel right, that's what we go after. If it serves the song, it belongs in the room.</p></div></details>
+      <details class="q"><summary><span>Do you offer mixing and mastering for songs recorded at home?</span><span class="pl" aria-hidden="true"></span></summary><div class="q__a"><p>Yes. If you've recorded vocals or instruments at home, I can mix and master your track to professional release quality. You can book a mixing or mastering session online, and I accept remote project files from anywhere.</p></div></details>
+      <details class="q"><summary><span>How does a session work?</span><span class="pl" aria-hidden="true"></span></summary><div class="q__a"><p>We start with a free 15-minute discovery call to talk about your music, what you're going for, and whether we're a good fit. From there we book your first session and get to work. Simple as that.</p></div></details>
+      <details class="q"><summary><span>Can I bring an unfinished song idea to a producer?</span><span class="pl" aria-hidden="true"></span></summary><div class="q__a"><p>Yes — producers often work with unfinished ideas. At LevProductions, you can bring a voice memo, lyrics, a melody or any rough start. I help develop the structure, write melodies or lyrics, and build the full production around your idea.</p></div></details>
+      <details class="q"><summary><span>How long will my project take?</span><span class="pl" aria-hidden="true"></span></summary><div class="q__a"><p>Don't worry about counting sessions — that's my job. When you book a package, I take full ownership of getting your music to where it needs to be. You'll walk away with something you're genuinely proud of. Check out the <a href="#pricing">packages</a> to find the right fit, or book a free discovery call and we'll figure it out together.</p></div></details>
+      <details class="q"><summary><span>What should I bring to my first session?</span><span class="pl" aria-hidden="true"></span></summary><div class="q__a"><p>Yourself, your ideas, and any references — songs you love, voice memos, demos you've made at home. The more I understand what you're going for, the better we can get there.</p></div></details>
+      <details class="q"><summary><span>Is LevProductions just for experienced artists?</span><span class="pl" aria-hidden="true"></span></summary><div class="q__a"><p>Not at all. Many of my clients are recording professionally for the first time. Part of what I do is mentoring — helping you understand the process, trust your instincts, and leave feeling confident about your music.</p></div></details>
+      <details class="q"><summary><span>Where are you located?</span><span class="pl" aria-hidden="true"></span></summary><div class="q__a"><p>The studio is based in Byron Bay, NSW in the Northern Rivers. It's a private, comfortable space designed for focused creative work. Remote projects are also welcome — send your files and we'll take it from there.</p></div></details>
     </div>
-    <div class="faq__list" id="faqs-list">
-      <details class="q" data-n="01"><summary><span class="tk">Take 01</span><span>How much does it cost to work with a music producer in the Northern Rivers?</span><span class="pl" aria-hidden="true"></span></summary><div class="q__a"><p>Music production prices in the Northern Rivers vary depending on the project, but at LevProductions I offer flexible options for songwriting support, recording, mixing and mastering. Prices depend on session length and project scope, and you can book or request a quote directly through my website.</p></div></details>
-      <details class="q" data-n="02"><summary><span class="tk">Take 02</span><span>What does a music producer do for artists?</span><span class="pl" aria-hidden="true"></span></summary><div class="q__a"><p>A music producer helps artists develop their sound by supporting songwriting, arrangement, recording, editing, mixing and overall creative direction. At LevProductions, I collaborate closely with artists to take songs from rough ideas or voice notes to polished, release-ready tracks.</p></div></details>
-      <details class="q" data-n="03"><summary><span class="tk">Take 03</span><span>What genres do you work in?</span><span class="pl" aria-hidden="true"></span></summary><div class="q__a"><p>Pop, soul, R&amp;B, neo-soul, indie pop, lo-fi, funk, folk, groove-driven music — that's the world I live in. But honestly, genre is secondary. I'm song-driven first. Whatever the track needs to feel right, that's what we go after. If it serves the song, it belongs in the room.</p></div></details>
-      <details class="q" data-n="04"><summary><span class="tk">Take 04</span><span>Do you offer mixing and mastering for songs recorded at home?</span><span class="pl" aria-hidden="true"></span></summary><div class="q__a"><p>Yes. If you've recorded vocals or instruments at home, I can mix and master your track to professional release quality. You can book a mixing or mastering session online, and I accept remote project files from anywhere.</p></div></details>
-      <details class="q" data-n="05"><summary><span class="tk">Take 05</span><span>How does a session work?</span><span class="pl" aria-hidden="true"></span></summary><div class="q__a"><p>We start with a free 15-minute discovery call to talk about your music, what you're going for, and whether we're a good fit. From there we book your first session and get to work. Simple as that.</p></div></details>
-      <details class="q" data-n="06"><summary><span class="tk">Take 06</span><span>Can I bring an unfinished song idea to a producer?</span><span class="pl" aria-hidden="true"></span></summary><div class="q__a"><p>Yes — producers often work with unfinished ideas. At LevProductions, you can bring a voice memo, lyrics, a melody or any rough start. I help develop the structure, write melodies or lyrics, and build the full production around your idea.</p></div></details>
-      <details class="q" data-n="07"><summary><span class="tk">Take 07</span><span>How long will my project take?</span><span class="pl" aria-hidden="true"></span></summary><div class="q__a"><p>Don't worry about counting sessions — that's my job. When you book a package, I take full ownership of getting your music to where it needs to be. You'll walk away with something you're genuinely proud of. Check out the <a href="#pricing">packages</a> to find the right fit, or book a free discovery call and we'll figure it out together.</p></div></details>
-      <details class="q" data-n="08"><summary><span class="tk">Take 08</span><span>What should I bring to my first session?</span><span class="pl" aria-hidden="true"></span></summary><div class="q__a"><p>Yourself, your ideas, and any references — songs you love, voice memos, demos you've made at home. The more I understand what you're going for, the better we can get there.</p></div></details>
-      <details class="q" data-n="09"><summary><span class="tk">Take 09</span><span>Is LevProductions just for experienced artists?</span><span class="pl" aria-hidden="true"></span></summary><div class="q__a"><p>Not at all. Many of my clients are recording professionally for the first time. Part of what I do is mentoring — helping you understand the process, trust your instincts, and leave feeling confident about your music.</p></div></details>
-      <details class="q" data-n="10"><summary><span class="tk">Take 10</span><span>Where are you located?</span><span class="pl" aria-hidden="true"></span></summary><div class="q__a"><p>The studio is based in Byron Bay, NSW in the Northern Rivers. It's a private, comfortable space designed for focused creative work. Remote projects are also welcome — send your files and we'll take it from there.</p></div></details>
-    </div>
+  </div>
+  <div class="wrap band" aria-hidden="true">
+    <picture>
+      <source type="image/avif" srcset="img/studio-4-800.avif 800w, img/studio-4-1600.avif 1600w" sizes="(min-width:1340px) 1280px, 90vw">
+      <source type="image/webp" srcset="img/studio-4-800.webp 800w, img/studio-4-1600.webp 1600w" sizes="(min-width:1340px) 1280px, 90vw">
+      <img src="img/studio-4-1600.webp" width="1600" height="1067" loading="lazy" decoding="async" alt="">
+    </picture>
   </div>
 </section>
 
-<section class="contact" id="contact" aria-labelledby="h-contact">
-  <picture class="contact__bg" aria-hidden="true">
-    <source type="image/avif" srcset="img/studio-4-800.avif 800w, img/studio-4-1600.avif 1600w" sizes="100vw">
-    <source type="image/webp" srcset="img/studio-4-800.webp 800w, img/studio-4-1600.webp 1600w" sizes="100vw">
-    <img src="img/studio-4-1600.webp" width="1600" height="1067" loading="lazy" decoding="async" alt="">
-  </picture>
-  <div class="wrap">
-    <div class="strip"><span class="n">08</span><span>Let’s speak</span><span class="sp"></span><span class="rec-dot" aria-hidden="true"></span></div>
-    <div class="contact__grid">
-      <div class="contact__intro">
-        <h2 class="display" id="h-contact">Let’s speak</h2>
-        <p>Reach out and we’ll have a chat. I’ll talk you through the process and happily answer any questions you have.</p>
-        <p class="direct"><a href="mailto:create@levproductions.com.au">create@levproductions.com.au</a><a href="tel:+61405956881">+61 (0) 405 956 881</a></p>
-      </div>
-      <div class="slip" id="slip">
-        <div class="slip__top"><span>Session slip</span><span>Free 15 min discovery call</span></div>
-        <form id="form" novalidate>
-          <div class="fields">
-            <div class="pkg" id="pkg"><span>Enquiring about: <span id="pkg-name"></span></span><button type="button" id="pkg-clear">Remove</button></div>
-            <div class="two">
-              <div class="f"><label for="fn">First Name</label><input id="fn" name="firstName" autocomplete="given-name" required maxlength="60"><span class="err" id="fn-e">Please add your first name.</span></div>
-              <div class="f"><label for="ln">Last Name</label><input id="ln" name="lastName" autocomplete="family-name" maxlength="60"><span class="err"></span></div>
-            </div>
-            <div class="f"><label for="em">Email</label><input id="em" name="email" type="email" autocomplete="email" required maxlength="200"><span class="err" id="em-e">Please add a valid email address.</span></div>
-            <div class="f"><label for="ms">Message</label><textarea id="ms" name="message" required maxlength="4000"></textarea><span class="err" id="ms-e">Please tell me a little about your music.</span></div>
-            <div class="hp" aria-hidden="true"><label>Leave empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
-            <div id="ts"></div>
-            <p class="form-msg" id="msg" role="status" aria-live="polite"></p>
-            <button class="btn" type="submit" id="send">Submit</button>
+<section class="contact dark" id="contact" aria-labelledby="h-contact">
+  <div class="wrap contact__grid">
+    <div class="contact__intro">
+      <h2 class="poster" id="h-contact">Let’s speak</h2>
+      <p>Reach out and we’ll have a chat. I’ll talk you through the process and happily answer any questions you have.</p>
+      <p class="direct"><a href="mailto:create@levproductions.com.au">create@levproductions.com.au</a><a href="tel:+61405956881">+61 (0) 405 956 881</a></p>
+    </div>
+    <div class="slip" id="slip">
+      <form id="form" novalidate>
+        <div class="fields">
+          <div class="pkg" id="pkg"><span>Enquiring about: <span id="pkg-name"></span></span><button type="button" id="pkg-clear">Remove</button></div>
+          <div class="two">
+            <div class="f"><label for="fn">First Name</label><input id="fn" name="firstName" autocomplete="given-name" required maxlength="60"><span class="err" id="fn-e">Please add your first name.</span></div>
+            <div class="f"><label for="ln">Last Name</label><input id="ln" name="lastName" autocomplete="family-name" maxlength="60"></div>
           </div>
-        </form>
-        <div class="done" role="status" aria-live="polite"><h3 class="display">Message received</h3><p>Thanks, I’ll get back to you soon to set up your free 15-minute discovery call.</p></div>
-      </div>
+          <div class="f"><label for="em">Email</label><input id="em" name="email" type="email" autocomplete="email" required maxlength="200"><span class="err" id="em-e">Please add a valid email address.</span></div>
+          <div class="f"><label for="ms">Message</label><textarea id="ms" name="message" required maxlength="4000"></textarea><span class="err" id="ms-e">Please tell me a little about your music.</span></div>
+          <div class="hp" aria-hidden="true"><label>Leave empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
+          <div id="ts"></div>
+          <p class="form-msg" id="msg" role="status" aria-live="polite"></p>
+          <button class="btn" type="submit" id="send">Submit</button>
+        </div>
+      </form>
+      <div class="done" role="status" aria-live="polite"><h3>Message received</h3><p>Thanks, I’ll get back to you soon to set up your free 15-minute discovery call.</p></div>
     </div>
   </div>
 </section>

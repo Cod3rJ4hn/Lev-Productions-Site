@@ -7,20 +7,20 @@ related_targets: []
 
 # Surface brief: index.html (LevProductions home, single page)
 
-Mode: Persuade. Visitor: an independent artist with an unfinished idea, often recording professionally for the first time. Action: send the on-page form to book a free 15-minute discovery call. Proof: real studio photos, eight real artists, transparent prices, Ari's first-person voice. Constraints: existing copy only, the pinned palette and Bebas Neue + Inter, silent by default with opt-in Spotify, single page with old routes redirected. Memorable moment: the tape rolls as you scroll and the session sheet fills in.
+Mode: Persuade. Visitor: an independent artist with an unfinished idea, often recording professionally for the first time. Action: send the on-page form to book a free 15-minute discovery call. Proof: real studio photos, eight real artists, transparent prices, Ari's first-person voice. Constraints: existing copy only, the pinned palette, silent by default with opt-in Spotify, single page with old routes redirected. Revision 2 (after the client said the first build still felt corporate and too close to the live site): new fonts, more minimal, new layout.
 
 ## Direction contract
 
-THESIS: The page is one live recording session on a studio track sheet. Each section is a numbered track and scrolling rolls the tape. It refuses the category default of a dark hero over a services grid, pricing cards and an artist carousel.
+THESIS: The page is a minimal gig poster. Each section has one huge type moment and then air; there are no boxes. It refuses the category default of a dark hero over a services grid and pricing cards, and it refuses the busy track-sheet of revision 1.
 
-OWN-WORLD: The ground is cream track-sheet stock (#FEF6EB / #F9F0E3), ruled in hairline columns that are the real grid. Tape-box card is sand #DBCEBC with brown-grey #655B4F stamping. Grease-pencil orange-red #F53C17 is used for marks, circles, REC and the primary action. The studio-black control room (#171717 / #212121) is used for the photo and artist passages. Bebas Neue is the session lettering and Inter the clerical hand. Track numbers, timecode and take counters appear everywhere.
+OWN-WORLD: Cream paper, a black room for the work, one full signal-orange field for the call. Bowlby One poster type over Bricolage Grotesque. Pills for actions, rounded photographs, hairlines instead of cards, flat everywhere. Orange is large or absent.
 
-STORY: The visitor sees their idea become a session: idea (voice memo), then tracks laid down (services), then the session booked (pricing), then who came through the door (artists), then questions (takes), then booking the call. They come to believe Ari will finish their song, and they send the form.
+STORY: The visitor reads a confident headline, sees the real studio, hears who Ari is, watches four tracks play on a timeline, sees honest prices, meets the artists, and sends the form.
 
-FIRST VIEWPORT: The studio photo is full-bleed under a cream track-sheet header strip with LEVPRODUCTIONS, the nav, a live REC light and a timecode. "WRITE, RECORD. RELEASE." spans the width in Bebas, about 14vw on desktop and 18vw on mobile, with "A place where artists grow." beneath. Two tape reels sit top-right (moved from bottom-right so they never collide with the primary action) and turn with scroll. A grease-pencil-circled orange "Book a free discovery call" button sits bottom-right on desktop and below the copy on mobile, visible at 375px.
+FIRST VIEWPORT: Cream page, the three-line headline WRITE, RECORD. RELEASE. (orange last line) filling the left two thirds at roughly 12vw, the tagline and sub line bottom-left, one orange pill "Book a free discovery call" bottom-right, the studio photo rising from the bottom edge. At 375px the button is visible without scrolling.
 
-FORM: Studio track sheet / tape box. Grounded list position 5 of 7. seed:375707cd7ec638c1
+FORM: Minimal poster. Seed: seed:375707cd7ec638c1 (direction pinned by client feedback; the dealt direction was reworked, not re-rolled).
 
-Signature interaction: the scroll is the transport. The reels spin, the timecode advances, the playhead sweeps the four service tracks, the VU needles kick on section entry, and the take counter ticks through the FAQs. Reduced motion shows a static, fully legible sheet.
+Signature interaction: the pinned services timeline (a playhead sweeps four lanes), plus an equaliser band driven by scroll and a pinned sideways artist shelf. Reduced motion shows a complete static page.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
