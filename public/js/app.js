@@ -1,286 +1,222 @@
 (() => {
   'use strict';
-  window.__lev = 1;
 
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
-  const root = document.documentElement;
-  const reduced = () => root.classList.contains('rm');
+  const reduced = document.documentElement.classList.contains('rm');
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 
-  /* ---------- seeded waveform bars (service clips) ---------- */
-  const rng = (seed) => () => ((seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296);
-  const makeBars = (count, seed, min = 18, max = 100) => {
-    const rand = rng(seed);
-    const frag = document.createDocumentFragment();
-    for (let i = 0; i < count; i++) {
+  /* ---------- sprayed waveforms ---------- */
+  // Two nested layers slide in opposite directions, so the waveform is revealed with transforms only.
+  $$('.clip').forEach((clip, n) => {
+    let seed = 31 + n * 17;
+    const rand = () => ((seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296);
+    const outer = document.createElement('div');
+    const inner = document.createElement('div');
+    outer.className = 'clip__w';
+    inner.className = 'clip__i';
+    for (let i = 0; i < 64; i++) {
       const b = document.createElement('i');
-      const env = 0.55 + 0.45 * Math.sin((i / count) * Math.PI * 3.2 + seed);
-      b.style.setProperty('--h', String(Math.round(min + (max - min) * rand() * env)));
-      frag.appendChild(b);
+      const env = 0.55 + 0.45 * Math.sin((i / 64) * Math.PI * 3.2 + n);
+      b.style.setProperty('--h', String(Math.round(18 + 82 * rand() * env)));
+      inner.appendChild(b);
     }
-    return frag;
-  };
-  $$('.clip').forEach((c, i) => c.insertBefore(makeBars(64, 31 + i * 17), $('.clip__cover', c)));
+    outer.appendChild(inner);
+    clip.appendChild(outer);
+  });
 
-  /* ---------- equaliser band: reacts to scroll ---------- */
+  /* ---------- equaliser ---------- */
   const eq = $('#eq');
-  let eqBars = [];
-  let eqVisible = false;
-  const drawEq = () => {
-    const y = scrollY;
-    eqBars.forEach((b, i) => {
-      const v = 0.22 + 0.78 * Math.abs(Math.sin(y * 0.006 + i * 0.37) * Math.cos(y * 0.0031 + i * 0.11));
-      b.style.setProperty('--s', v.toFixed(3));
-    });
-  };
-  if (eq) {
-    const n = innerWidth < 700 ? 28 : 64;
-    for (let i = 0; i < n; i++) eq.appendChild(document.createElement('i'));
-    eqBars = $$('i', eq);
-    drawEq();
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver((e) => { eqVisible = e[0].isIntersecting; }, { rootMargin: '100px' }).observe(eq);
-    } else {
-      eqVisible = true;
-    }
-  }
+  const bars = [];
+  for (let i = 0; i < (innerWidth < 700 ? 28 : 64); i++) bars.push(eq.appendChild(document.createElement('i')));
+  let eqVisible = true;
   let ticking = false;
-  addEventListener('scroll', () => {
-    if (ticking || reduced() || !eqVisible) return;
+  const drawEq = () => bars.forEach((b, i) => {
+    const v = 0.22 + 0.78 * Math.abs(Math.sin(scrollY * 0.006 + i * 0.37) * Math.cos(scrollY * 0.0031 + i * 0.11));
+    b.style.setProperty('--s', v.toFixed(3));
+  });
+  drawEq();
+  new IntersectionObserver((e) => { eqVisible = e[0].isIntersecting; }, { rootMargin: '100px' }).observe(eq);
+  if (!reduced) addEventListener('scroll', () => {
+    if (ticking || !eqVisible) return;
     ticking = true;
     requestAnimationFrame(() => { ticking = false; drawEq(); });
   }, { passive: true });
 
+  /* ---------- discovery wall ---------- */
+  const call = $('#call');
+  const callSeen = new IntersectionObserver((e) => {
+    if (!e[0].isIntersecting) return;
+    call.classList.add('in');
+    callSeen.disconnect();
+  }, { threshold: 0.25 });
+  callSeen.observe(call);
+
   /* ---------- menu ---------- */
   const menu = $('#menu');
   const nav = $('#nav');
-  const closeMenu = () => { nav.classList.remove('open'); menu.setAttribute('aria-expanded', 'false'); };
-  menu.addEventListener('click', () => {
-    const open = nav.classList.toggle('open');
-    menu.setAttribute('aria-expanded', String(open));
-  });
-  nav.addEventListener('click', (e) => { if (e.target.closest('a')) closeMenu(); });
-  addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeMenu(); closePlayer(); } });
+  const setMenu = (open) => { nav.classList.toggle('open', open); menu.setAttribute('aria-expanded', String(open)); };
+  menu.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
+  nav.addEventListener('click', (e) => { if (e.target.closest('a')) setMenu(false); });
 
-  /* ---------- reveals + counters ---------- */
-  const counters = $$('[data-count]');
-  const count = (el) => {
-    const end = Number(el.dataset.count);
-    if (reduced()) { el.textContent = String(end); return; }
-    const t0 = performance.now();
-    const dur = 1100;
-    const tick = (t) => {
-      const k = clamp((t - t0) / dur);
-      el.textContent = String(Math.round(end * (1 - Math.pow(1 - k, 3))));
-      if (k < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
+  // Waits for scrolling to stop: measuring mid-scroll misplaces the pinned sections.
+  const remeasure = () => { if (window.ScrollTrigger) ScrollTrigger.refresh(true); };
+
+  /* ---------- pricing tabs ---------- */
+  const tabs = $$('[role=tab]');
+  const selectTab = (tab, focus) => {
+    tabs.forEach((t) => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      $(`#${t.getAttribute('aria-controls')}`).hidden = !on;
+    });
+    if (focus) tab.focus();
+    remeasure();
   };
-  if (!reduced()) counters.forEach((c) => { c.textContent = '0'; });
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => selectTab(tab));
+    tab.addEventListener('keydown', (e) => {
+      const to = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[e.key];
+      if (to === undefined) return;
+      e.preventDefault();
+      selectTab(tabs[(to + tabs.length) % tabs.length], true);
+    });
+  });
+  selectTab(tabs[0]);
+  // Accordions change the page height, so pinned sections below must re-measure.
+  $$('details').forEach((d) => d.addEventListener('toggle', () => { remeasure(); }));
 
-  const targets = $$('[data-reveal]');
-  if ('IntersectionObserver' in window && !reduced()) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((en) => {
-        if (!en.isIntersecting) return;
-        en.target.classList.add('in');
-        $$('[data-count]', en.target).forEach(count);
-        io.unobserve(en.target);
-      });
-    }, { threshold: 0.18, rootMargin: '0px 0px -6% 0px' });
-    targets.forEach((t) => io.observe(t));
-  } else {
-    targets.forEach((t) => t.classList.add('in'));
-    counters.forEach((c) => { c.textContent = c.dataset.count; });
-  }
-
-  /* ---------- scroll-driven sections (GSAP) ---------- */
+  /* ---------- pinned sections ---------- */
   if (window.gsap && window.ScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);
     const mm = gsap.matchMedia();
 
-    // 03 services: pinned timeline, playhead sweeps the four tracks
     mm.add('(min-width:1000px) and (min-height:720px) and (prefers-reduced-motion:no-preference)', () => {
       const stage = $('.svc');
       const lanesEl = $('#lanes');
-      const head = $('.playhead');
+      const can = $('.can');
       const lanes = $$('.lane', lanesEl).map((el) => ({
-        el,
-        s: Number(el.dataset.s),
-        e: Number(el.dataset.e),
-        cover: $('.clip__cover', el),
-        on: false,
+        el, s: Number(el.dataset.s), e: Number(el.dataset.e), outer: $('.clip__w', el), inner: $('.clip__i', el),
       }));
       stage.classList.add('is-scrub');
-      const trackW = () => lanesEl.clientWidth - $(".lane__body", lanesEl).offsetLeft - 2;
       let width = 0;
+      const measure = () => { width = lanesEl.clientWidth - $('.lane__body', lanesEl).offsetLeft - 2; };
       const render = (p) => {
-        head.style.transform = `translate3d(${(p * width).toFixed(1)}px,0,0)`;
+        can.style.transform = `translate3d(${(p * width).toFixed(1)}px,0,0)`;
         lanes.forEach((l) => {
-          const f = clamp((p - l.s) / (l.e - l.s));
-          l.cover.style.transform = `scaleX(${(1 - f).toFixed(4)})`;
-          const on = p >= l.s;
-          if (on !== l.on) { l.on = on; l.el.classList.toggle('is-on', on); }
+          const hidden = (1 - clamp((p - l.s) / (l.e - l.s))) * 100;
+          l.outer.style.transform = `translateX(${-hidden}%)`;
+          l.inner.style.transform = `translateX(${hidden}%)`;
+          l.el.classList.toggle('is-on', p >= l.s);
         });
       };
-      lanes.forEach((l) => l.el.classList.remove('is-on'));
+      measure();
+      render(0);
       const st = ScrollTrigger.create({
-        trigger: stage,
-        start: 'top top',
-        end: '+=170%',
-        pin: true,
-        scrub: 0.4,
-        invalidateOnRefresh: true,
-        onRefresh: () => { width = trackW(); },
+        trigger: stage, start: 'top top', end: '+=170%', pin: true,
+        onRefresh: (self) => { measure(); render(self.progress); },
         onUpdate: (self) => render(self.progress),
       });
-      width = trackW();
-      render(0);
       return () => {
         st.kill();
         stage.classList.remove('is-scrub');
-        head.style.transform = '';
-        lanes.forEach((l) => { l.cover.style.transform = ''; l.el.classList.add('is-on'); });
+        can.style.transform = '';
+        lanes.forEach((l) => { l.outer.style.transform = ''; l.inner.style.transform = ''; l.el.classList.add('is-on'); });
       };
     });
 
-    // 05 artists: pinned sideways scroll along the shelf
-    mm.add('(min-width:1000px) and (min-height:640px) and (prefers-reduced-motion:no-preference)', () => {
-      const stage = $('.artists');
+    mm.add('(min-width:1000px) and (min-height:720px) and (prefers-reduced-motion:no-preference)', () => {
       const shelf = $('#shelf');
       const track = $('#track');
       shelf.classList.add('is-pinned');
       shelf.scrollLeft = 0;
-      const dist = () => Math.max(0, track.scrollWidth - shelf.clientWidth + 48);
-      const tween = gsap.to(track, {
-        x: () => -dist(),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: stage,
-          start: 'top top',
-          end: () => `+=${dist()}`,
-          pin: true,
-          scrub: 0.5,
-          invalidateOnRefresh: true,
-        },
+      const dist = () => Math.max(0, track.scrollWidth - shelf.clientWidth + 2 * parseFloat(getComputedStyle(shelf).paddingLeft));
+      gsap.to(track, {
+        x: () => -dist(), ease: 'none',
+        scrollTrigger: { trigger: '.artists', start: 'top top', end: () => `+=${dist()}`, pin: true, scrub: 0.5, invalidateOnRefresh: true },
       });
-      return () => {
-        tween.scrollTrigger && tween.scrollTrigger.kill();
-        tween.kill();
-        gsap.set(track, { clearProps: 'transform' });
-        shelf.classList.remove('is-pinned');
-      };
+      return () => shelf.classList.remove('is-pinned');
     });
 
     addEventListener('load', () => ScrollTrigger.refresh());
   }
 
-  /* ---------- Spotify (opt-in, loads on click) ---------- */
+  /* ---------- Spotify (loads on click only) ---------- */
   const player = $('#player');
   const frame = $('#player-frame');
   let lastTrigger = null;
-  function openPlayer(trigger) {
-    lastTrigger = trigger || null;
-    if (!frame.src || frame.src === 'about:blank' || !frame.getAttribute('src')) frame.src = frame.dataset.src;
-    player.classList.add('open');
-    $('#player-close').focus({ preventScroll: true });
-  }
-  function closePlayer() {
+  const closePlayer = () => {
     if (!player.classList.contains('open')) return;
     player.classList.remove('open');
     frame.removeAttribute('src');
     if (lastTrigger) lastTrigger.focus({ preventScroll: true });
-  }
-  $$('[data-play]').forEach((b) => b.addEventListener('click', () => openPlayer(b)));
-  $('#player-close').addEventListener('click', closePlayer);
-
-  /* ---------- package chip ---------- */
-  const pkg = $('#pkg');
-  const pkgName = $('#pkg-name');
-  let service = '';
-  const setService = (name) => {
-    service = name;
-    pkg.classList.toggle('on', Boolean(name));
-    pkgName.textContent = name;
   };
-  $$('[data-package]').forEach((a) => a.addEventListener('click', () => setService(a.dataset.package)));
-  $('#pkg-clear').addEventListener('click', () => setService(''));
+  $$('[data-play]').forEach((b) => b.addEventListener('click', () => {
+    lastTrigger = b;
+    if (!frame.getAttribute('src')) frame.src = frame.dataset.src;
+    player.classList.add('open');
+    $('#player-close').focus({ preventScroll: true });
+  }));
+  $('#player-close').addEventListener('click', closePlayer);
+  addEventListener('keydown', (e) => { if (e.key === 'Escape') { setMenu(false); closePlayer(); } });
 
-  /* ---------- form ---------- */
+  /* ---------- booking form ---------- */
   const form = $('#form');
   const msg = $('#msg');
   const send = $('#send');
-  const slip = $('#slip');
-  const siteKey = (document.querySelector('meta[name="turnstile-sitekey"]') || {}).content || '';
-  let tsToken = '';
-  let tsLoaded = false;
-  const loadTurnstile = () => {
-    if (tsLoaded || !siteKey) return;
-    tsLoaded = true;
-    window.__tsReady = () => {
-      window.turnstile.render('#ts', { sitekey: siteKey, theme: 'dark', callback: (t) => { tsToken = t; }, 'expired-callback': () => { tsToken = ''; } });
-    };
+  $$('[data-service]').forEach((a) => a.addEventListener('click', () => { $('#sv').value = a.dataset.service; setBad('sv', false); }));
+
+  const siteKey = $('meta[name="turnstile-sitekey"]').content;
+  let token = '';
+  form.addEventListener('focusin', () => {
+    if (!siteKey) return;
+    window.__tsReady = () => turnstile.render('#ts', { sitekey: siteKey, theme: 'dark', callback: (t) => { token = t; }, 'expired-callback': () => { token = ''; } });
     const s = document.createElement('script');
     s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=__tsReady';
     s.async = true;
     document.head.appendChild(s);
-  };
-  form.addEventListener('focusin', loadTurnstile, { once: true });
+  }, { once: true });
 
-  const field = (id) => $(`#${id}`).closest('.f');
-  const setBad = (id, bad) => {
-    field(id).classList.toggle('bad', bad);
-    $(`#${id}`).setAttribute('aria-invalid', bad ? 'true' : 'false');
-  };
-  const validate = () => {
-    const fn = $('#fn').value.trim();
-    const em = $('#em').value.trim();
-    const ms = $('#ms').value.trim();
-    const okEm = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em);
-    setBad('fn', !fn); setBad('em', !okEm); setBad('ms', !ms);
-    const firstBad = !fn ? 'fn' : !okEm ? 'em' : !ms ? 'ms' : '';
-    if (firstBad) $(`#${firstBad}`).focus();
-    return !firstBad;
-  };
-  ['fn', 'em', 'ms'].forEach((id) => $(`#${id}`).addEventListener('input', () => setBad(id, false)));
+  const ids = ['fn', 'ig', 'ph', 'em', 'sv', 'ms'];
+  const value = (id) => $(`#${id}`).value.trim();
+  function setBad(id, bad) {
+    $(`#${id}`).closest('.f').classList.toggle('bad', bad);
+    $(`#${id}`).setAttribute('aria-invalid', String(bad));
+  }
+  ids.forEach((id) => $(`#${id}`).addEventListener('input', () => setBad(id, false)));
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    msg.textContent = ''; msg.classList.remove('err');
-    if (!validate()) return;
-    if ($('input[name="website"]').value) return; // honeypot
-    send.disabled = true;
+    msg.textContent = '';
+    const bad = ids.filter((id) => {
+      const wrong = id === 'em' ? !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value(id)) : !value(id);
+      setBad(id, wrong);
+      return wrong;
+    });
+    if (bad.length) { $(`#${bad[0]}`).focus(); return; }
+    if (form.elements.website.value) return;
     const label = send.textContent;
+    send.disabled = true;
     send.textContent = 'Sending…';
+    const fallback = 'Your message did not send. Please try again or email create@levproductions.com.au.';
     try {
       const res = await fetch('/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          firstName: $('#fn').value,
-          lastName: $('#ln').value,
-          email: $('#em').value,
-          message: $('#ms').value,
-          service,
-          turnstileToken: tsToken,
-        }),
+        body: JSON.stringify({ fullName: value('fn'), instagram: value('ig'), phone: value('ph'), email: value('em'), service: value('sv'), message: value('ms'), turnstileToken: token }),
       });
       const data = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(data.error || 'Something went wrong. Please try again or email create@levproductions.com.au.');
-      slip.classList.add('is-done');
+      if (!res.ok) throw new Error(data.error || fallback);
+      $('#slip').classList.add('is-done');
+      $('#done').focus({ preventScroll: true });
       form.reset();
-      setService('');
     } catch (err) {
-      msg.classList.add('err');
-      msg.textContent = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
-      if (window.turnstile && tsLoaded) { try { window.turnstile.reset(); tsToken = ''; } catch (_) { /* noop */ } }
+      msg.textContent = err instanceof TypeError ? fallback : err.message;
+      if (window.turnstile) { turnstile.reset(); token = ''; }
     } finally {
       send.disabled = false;
       send.textContent = label;
     }
   });
-
-  const yr = $('#yr');
-  if (yr) yr.textContent = String(new Date().getFullYear());
 })();
