@@ -29,19 +29,17 @@ The journey: free 15-minute discovery call, then the first session is booked. Ar
 ## Capabilities and Constraints
 
 - Services: [01] Production, [02] Song writing, [03] Mixing & mastering, [04] Editing.
-- Pricing: Full Production $2,400 (up to 5 full sessions, 30 hrs). Co-Written Song $3,360 (up to 7 full sessions, 42 hrs). Extra sessions $480 full day / $330 half day. In-house mix $600, outsourced mix $1,200, in-house master $110, outsourced master $160.
+- Pricing tabs. Full Production: pre-written $2,400 (5 sessions, 30 hrs), co-written $3,360 (7 sessions, 42 hrs). Stripped Back: pre-written $960 (2 sessions, 12 hrs), co-written $1,920 (4 sessions, 24 hrs). EP & Album: by conversation, 10% off 3-6 songs, 15% off 7+. Day bookings $550 / $380 / $300. Royalties 25% co-writing or 15% production. Extra sessions $480 full day / $330 half day. In-house mix $600, outsourced mix $1,200, in-house master $110, outsourced master $160.
 - Contact: create@levproductions.com.au, +61 (0) 405 956 881, Byron Bay Industrial, Northern Rivers NSW.
-- Primary action: the on-page contact form (First name, Last name, Email, Message), backed by a Cloudflare Function with Turnstile and D1.
+- Primary action: the on-page booking form (Full Name, Instagram, Phone, Email, Service Interested, Message), backed by a Cloudflare Function with Turnstile and D1.
 - Audio: silent by default. Ari's Spotify playlist loads only when the visitor opts in.
 - Single page. The old routes /about, /get-started and /hit-me-up 301-redirect to their sections.
-- Undecided: the text of four live-site panels (Book by the Day, Extras, Royalties & Rights, Booking Policy) is unavailable and is left out until supplied.
 
 ## Brand Commitments
 
 - Keep the existing palette: cream #FEF6EB, #F9F0E3, sand #DBCEBC, signal orange-red #F53C17, near-black #171717 / #212121 / #1B1B1B, brown-grey #655B4F, grey #A29D96.
-- Keep the existing type: Bebas Neue (display) and Inter (body).
 - Use only content that exists on the live site. Invent nothing.
-- The tone should be less corporate, more dynamic and more musical than the current site.
+- The tone should be less corporate, more dynamic and more musical than the current site, minimal, and graffiti themed.
 
 ## Evidence on Hand
 
