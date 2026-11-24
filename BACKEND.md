@@ -18,13 +18,13 @@ Claude fills this in as it builds. Every dynamic feature (form, payment, booking
 ## Features on this site
 
 ### Contact / discovery-call form (`#contact`)
-- What it does: validates (client and server), blocks spam with Turnstile, stores every enquiry in D1 first, then emails Ari. "Get Started" buttons on the pricing cards attach the chosen package (Full Production or Co-Written Song) to the enquiry.
+- What it does: validates (client and server), blocks spam with Turnstile, stores every enquiry in D1 first, then emails Ari. Fields match the live `/get-started` form: Full Name, Instagram, Phone, Email, Service Interested, Message (all required). "Get Started" buttons preselect the service. Needs JavaScript (Turnstile does too).
 - Function: `functions/contact.js` (POST `/contact`), helpers in `functions/_shared/validation.js`.
 - Front end: `public/index.html` (form) and `public/js/app.js` (submit, states).
 - Services: Cloudflare Turnstile (spam), Cloudflare D1 (storage), Resend (email).
 - Secrets: `TURNSTILE_SECRET_KEY`, `EMAIL_API_KEY`, `NOTIFY_EMAIL` (optional `EMAIL_FROM`).
 - Public value (not a secret): the Turnstile **site key** goes in the `<meta name="turnstile-sitekey" content="">` tag in `public/index.html`. While it is empty the form still renders but the spam check fails, so submissions are rejected.
-- Storage: D1 table `submissions` (see `schema.sql`); the package is saved in the `meta` column as JSON.
+- Storage: D1 table `submissions` (see `schema.sql`); service, Instagram and phone are saved in the `meta` column as JSON.
 - I must: create the D1 database and paste its id into `wrangler.toml`, create the Turnstile widget (domain levproductions.com.au), create the Resend account/key and verify the sending domain, set the secrets, then submit a real test enquiry.
 
 ### Spotify player (artists "Have a listen" button)

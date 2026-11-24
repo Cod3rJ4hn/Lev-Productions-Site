@@ -1,4 +1,4 @@
-// POST /contact — the LevProductions enquiry form.
+// POST /contact — the LevProductions booking form.
 // Validates server-side, checks Turnstile, stores the lead in D1 first (so an
 // email failure never loses it), then emails Ari via Resend.
 //
@@ -7,7 +7,17 @@
 
 import { isEmail, required, clean, json, verifyTurnstile } from './_shared/validation.js';
 
-const SERVICES = new Set(['Full Production', 'Co-Written Song']);
+const SERVICES = new Set([
+  'Music production – Stripped Back',
+  'Music production – Full Production',
+  'Record an EP or album',
+  'Mix',
+  'Master',
+  'Mix & Master',
+  'Editing',
+]);
+
+const oneLine = (value, max) => clean(value, max).replace(/[\r\n]+/g, ' ');
 
 export async function onRequestPost({ request, env }) {
   let data;
@@ -16,16 +26,17 @@ export async function onRequestPost({ request, env }) {
   } catch {
     return json({ error: 'Invalid request.' }, 400);
   }
+  if (!data || typeof data !== 'object') return json({ error: 'Invalid request.' }, 400);
 
-  const firstName = clean(data.firstName, 60);
-  const lastName = clean(data.lastName, 60);
-  const email = clean(data.email, 200);
+  const name = oneLine(data.fullName, 120);
+  const instagram = oneLine(data.instagram, 80);
+  const phone = oneLine(data.phone, 40);
+  const email = oneLine(data.email, 200);
   const message = clean(data.message, 4000);
   const service = SERVICES.has(data.service) ? data.service : '';
-  const name = [firstName, lastName].filter(Boolean).join(' ');
 
-  if (!required(firstName) || !isEmail(email) || !required(message)) {
-    return json({ error: 'Please fill in your first name, a valid email and a message.' }, 422);
+  if (![name, instagram, phone, message, service].every(required) || !isEmail(email)) {
+    return json({ error: 'Please fill in every field with a valid email.' }, 422);
   }
 
   const ip = request.headers.get('CF-Connecting-IP');
@@ -37,7 +48,7 @@ export async function onRequestPost({ request, env }) {
     try {
       await env.DB.prepare(
         'INSERT INTO submissions (name, email, message, meta) VALUES (?, ?, ?, ?)'
-      ).bind(name, email, message, JSON.stringify({ service, source: 'levproductions.com.au' })).run();
+      ).bind(name, email, message, JSON.stringify({ service, instagram, phone })).run();
       stored = true;
     } catch (err) {
       console.error('D1 insert failed', err);
@@ -57,12 +68,12 @@ export async function onRequestPost({ request, env }) {
           from: env.EMAIL_FROM || 'LevProductions Website <onboarding@resend.dev>',
           to: env.NOTIFY_EMAIL,
           reply_to: email,
-          subject: `New enquiry from ${name}${service ? ` (${service})` : ''}`,
-          text: `${name} <${email}>${service ? `\nEnquiring about: ${service}` : ''}\n\n${message}`,
+          subject: `New enquiry from ${name} (${service})`,
+          text: `${name} <${email}>\nPhone: ${phone}\nInstagram: ${instagram}\nService: ${service}\n\n${message}`,
         }),
       });
       emailed = res.ok;
-      if (!res.ok) console.error('Email send failed', res.status, await res.text());
+      if (!res.ok) console.error('Email send failed', res.status);
     } catch (err) {
       console.error('Email send failed', err);
     }
@@ -70,7 +81,7 @@ export async function onRequestPost({ request, env }) {
 
   // The lead must land somewhere. If neither storage nor email worked, say so.
   if (!stored && !emailed) {
-    return json({ error: 'Sorry, that did not go through. Please email create@levproductions.com.au instead.' }, 502);
+    return json({ error: 'Your message did not send. Please email create@levproductions.com.au instead.' }, 502);
   }
 
   return json({ ok: true });
