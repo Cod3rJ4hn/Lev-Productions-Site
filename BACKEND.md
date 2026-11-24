@@ -17,26 +17,41 @@ Claude fills this in as it builds. Every dynamic feature (form, payment, booking
 
 ## Features on this site
 
-<!-- Claude adds one block per feature it builds. Example shape: -->
+### Contact / discovery-call form (`#contact`)
+- What it does: validates (client and server), blocks spam with Turnstile, stores every enquiry in D1 first, then emails Ari. Fields match the live `/get-started` form: Full Name, Instagram, Phone, Email, Service Interested, Message (all required). "Get Started" buttons preselect the service. Needs JavaScript (Turnstile does too).
+- Function: `functions/contact.js` (POST `/contact`), helpers in `functions/_shared/validation.js`.
+- Front end: `public/index.html` (form) and `public/js/app.js` (submit, states).
+- Services: Cloudflare Turnstile (spam), Cloudflare D1 (storage), Resend (email).
+- Secrets: `TURNSTILE_SECRET_KEY`, `EMAIL_API_KEY`, `NOTIFY_EMAIL` (optional `EMAIL_FROM`).
+- Public value (not a secret): the Turnstile **site key** goes in the `<meta name="turnstile-sitekey" content="">` tag in `public/index.html`. While it is empty the form still renders but the spam check fails, so submissions are rejected.
+- Storage: D1 table `submissions` (see `schema.sql`); service, Instagram and phone are saved in the `meta` column as JSON.
+- I must: create the D1 database and paste its id into `wrangler.toml`, create the Turnstile widget (domain levproductions.com.au), create the Resend account/key and verify the sending domain, set the secrets, then submit a real test enquiry.
 
-<!--
-### Contact / quote form
-- What it does: validates, blocks spam, stores the submission, emails me.
-- Function: functions/contact.js
-- Needs: Turnstile site+secret key, email provider API key, notify-to address.
-- Secrets: TURNSTILE_SECRET_KEY, EMAIL_API_KEY, NOTIFY_EMAIL
-- Storage: D1 table `submissions` (see schema.sql)
-- I must: create the Turnstile widget, create the email provider account + key, create the D1 db.
--->
+### Spotify player (artists "Have a listen" button)
+- What it does: opt-in. The playlist embed loads only when a visitor clicks, never on page load.
+- Needs: nothing. Playlist id lives in `public/index.html` (`#player-frame`).
+
+### Redirects
+- `public/_redirects` sends the old `/about`, `/get-started`, `/hit-me-up` URLs to the matching section with a 301. Check after deploy that the `#section` is kept.
 
 ## Secrets to set (master list)
 
-<!-- Claude keeps this list current. Each row: name — what it is — where to get it. -->
+| Name | What it is | Where to get it |
+|---|---|---|
+| `TURNSTILE_SECRET_KEY` | Turnstile secret for server-side token check | Cloudflare dashboard, Turnstile widget |
+| `EMAIL_API_KEY` | Resend API key | resend.com, API Keys |
+| `NOTIFY_EMAIL` | Where enquiries are emailed | Ari's inbox |
+| `EMAIL_FROM` (optional) | Verified sender, e.g. `LevProductions <hello@levproductions.com.au>` | Resend, verified domain |
 
 ## One-off setup I must do
 
-<!-- Claude lists the accounts/resources I create by hand: D1 database, Turnstile widget,
-     Stripe account + test/live keys, email provider, booking account, custom domain. -->
+1. `npx wrangler d1 create lev-productions-db`, paste the printed `database_id` into `wrangler.toml`.
+2. `npx wrangler d1 execute lev-productions-db --file=schema.sql --remote`.
+3. Create the Turnstile widget, put the site key in the `turnstile-sitekey` meta tag.
+4. Create the Resend key, verify the sending domain.
+5. `npx wrangler pages secret put` for each secret above.
+6. Connect the custom domain levproductions.com.au to the Pages project.
+7. Not used on this site: `functions/checkout.js` and `functions/stripe-webhook.js` are template leftovers (no payments here). Delete them before launch so they are not deployed.
 
 ## Before this site goes live
 
